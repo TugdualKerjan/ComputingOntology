@@ -283,5 +283,225 @@
         "label": "roons - MONIAC overview"
       }
     ]
+  },
+  {
+    "id": "fluidic-adder",
+    "name": "Water (fluidic) computer",
+    "realizes": "binary addition / boolean logic (AND, XOR)",
+    "description": "Water levels in vessels encode binary digits; a siphon and slow drain combine to implement AND and XOR in a single cup-and-tube unit. A filled cup is a 1, an empty cup a 0. When two cups feed one container the siphon trips (AND = carry), while the remainder leaks out the XOR drain. These half-adder cells chain into a multi-bit ripple adder. No moving parts beyond the water itself.",
+    "substrate": [
+      "fluidics"
+    ],
+    "computation_model": [
+      "register-machine"
+    ],
+    "determinism": "deterministic",
+    "reversibility": "irreversible",
+    "operations": [
+      "ADD",
+      "AND",
+      "XOR"
+    ],
+    "exactness": "exact",
+    "realization_type": "procedural",
+    "speed": "seconds to minutes per bit (gravity-driven flow)",
+    "compute_capacity": "4-bit addition demonstrated; theoretically scalable",
+    "examples": [
+      {
+        "url": "https://www.youtube.com/watch?v=IxXaizglscw",
+        "label": "I Made A Water Computer And It Actually Works",
+        "description": "Build and demonstration of a fluidic binary adder using cups, tubes and siphons to implement AND and XOR gates in water"
+      },
+      {
+        "url": "https://hackaday.com/2021/04/26/logic-flows-literally-in-this-water-adder/",
+        "label": "Hackaday — Logic Flows, Literally, In This Water Adder",
+        "description": "Technical write-up explaining the siphon-based AND/XOR mechanism and how the cells chain into a multi-bit adder"
+      }
+    ]
+  },
+  {
+    "id": "lego-rod-logic",
+    "name": "LEGO mechanical computer",
+    "realizes": "arbitrary digital logic / sequential game state",
+    "description": "A fully mechanical computer built from LEGO Technic with no electronics. Binary memory is stored as lever positions on a rotating drum (rod logic); a read/write head flips levers to write bits and senses them pneumatically on readback. A joystick translates direction inputs into pneumatic signals that pass through a mechanical filter preventing illegal moves, then drive a 16×16 push-rod display. Demonstrated running the game Snake entirely in hardware.",
+    "substrate": [
+      "mechanical"
+    ],
+    "computation_model": [
+      "finite-automaton"
+    ],
+    "determinism": "deterministic",
+    "reversibility": "irreversible",
+    "operations": [
+      "AND",
+      "OR",
+      "NOT",
+      "STORE",
+      "READ"
+    ],
+    "exactness": "exact",
+    "realization_type": "procedural",
+    "speed": "~1 Hz game-tick (limited by pneumatic signal propagation through tubing)",
+    "compute_capacity": "16×16 display state + snake tail buffer (tens of bits of working memory)",
+    "examples": [
+      {
+        "url": "https://www.youtube.com/watch?v=Ux_brSrV9-g",
+        "label": "LEGO Computer Snake Game V2",
+        "description": "Full demonstration of the LEGO mechanical computer playing Snake, with explanation of the rod-logic memory drum, joystick input filtering, and push-rod pixel display"
+      },
+      {
+        "url": "https://hackaday.com/2024/08/23/a-game-of-snake-on-a-lego-mechanical-computer/",
+        "label": "Hackaday — A Game Of Snake On A LEGO Mechanical Computer",
+        "description": "Technical breakdown of the three subsystems: joystick/filter, tail buffer memory drum, and 16×16 display writer"
+      }
+    ]
+  },
+  {
+    "id": "fire-control-computer",
+    "name": "Mechanical fire-control computer",
+    "realizes": "ballistic trajectory / gun bearing and elevation (multivariate real-time ODE)",
+    "description": "Electromechanical analog computers installed on WWII-era warships (e.g. the US Navy Mark 1) continuously computed the correct bearing and elevation for naval guns from up to 25 live inputs: target range, target bearing, own-ship speed and course, wind speed, shell muzzle velocity, and more. Seven classes of mechanism — shafts, gears, cams, differentials, component solvers, integrators, and multipliers — were combined to solve the fire-control problem in real time. Cams encoded nonlinear functions (ballistic tables, trigonometry); differentials summed or differenced rotating shafts; integrators accumulated rates over time. Output drove gun-mount servos electrically. A 1953 US Navy training film (s1i-dnAH9Y4) walks through all seven mechanisms.",
+    "substrate": [
+      "mechanical",
+      "electronic"
+    ],
+    "computation_model": [
+      "analog-continuous"
+    ],
+    "determinism": "deterministic",
+    "reversibility": "irreversible",
+    "operations": [
+      "INTEGRATE",
+      "MULTIPLY",
+      "ADD",
+      "COMPOSE"
+    ],
+    "exactness": "approximate",
+    "realization_type": "analogical",
+    "speed": "continuous real-time (output updated as fast as inputs change)",
+    "compute_capacity": "~25 input variables → 2 output variables (bearing, elevation)",
+    "examples": [
+      {
+        "url": "https://www.youtube.com/watch?v=s1i-dnAH9Y4",
+        "label": "Mechanical Computer (All Parts) — Basic Mechanisms In Fire Control Computers (1953)",
+        "description": "US Navy training film explaining all seven mechanical computing elements: shafts, gears, cams, differentials, component solvers, integrators, and multipliers"
+      },
+      {
+        "url": "https://hackaday.com/2014/10/28/retrotechtacular-fire-control-computers-in-navy-ships/",
+        "label": "Hackaday — Retrotechtacular: Fire Control Computers In Navy Ships",
+        "description": "Overview of the Mark 1 fire-control computer and how its subsystems solved the ballistic equations continuously"
+      }
+    ]
+  },
+  {
+    "id": "antikythera",
+    "name": "Antikythera mechanism",
+    "realizes": "astronomical positions, eclipse prediction, Metonic calendar (multi-cycle gear ratios)",
+    "description": "A hand-cranked bronze gearwork device built around 150–100 BC — the oldest known analog computer. Turning a single input crank advances 37 meshing gears whose tooth-count ratios encode the periods of the Sun, Moon, and planets. A differential gear (rediscovered in the 16th century) models the Moon's elliptical speed variation. Front dials show the zodiac position of Sun and Moon and display lunar phase via a half-silvered sphere; rear spiral dials track the 19-year Metonic cycle (235 lunations), the 18-year Saros eclipse cycle, and the 4-year Olympiad. Setting a date predicts eclipses and planetary positions decades ahead.",
+    "substrate": [
+      "mechanical"
+    ],
+    "computation_model": [
+      "analog-continuous"
+    ],
+    "determinism": "deterministic",
+    "reversibility": "reversible",
+    "operations": [
+      "MULTIPLY-by-constant",
+      "ADD",
+      "MOD"
+    ],
+    "exactness": "approximate",
+    "realization_type": "analogical",
+    "speed": "instantaneous (gears turn as fast as the crank)",
+    "compute_capacity": "~10 astronomical cycles simultaneously; eclipse prediction decades in advance",
+    "examples": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
+        "label": "Antikythera mechanism — Wikipedia"
+      },
+      {
+        "url": "https://www.nature.com/articles/s41598-021-84310-w",
+        "label": "A Model of the Cosmos in the ancient Greek Antikythera Mechanism (Nature, 2021)",
+        "description": "Peer-reviewed reconstruction of the full gear train including the planetary display on the front plate"
+      }
+    ]
+  },
+  {
+    "id": "liquid-marble",
+    "name": "Liquid marble computer",
+    "realizes": "boolean logic / reversible gates (AND, XOR, OR, NOT, Toffoli, Fredkin)",
+    "description": "Liquid marbles are millimetre-scale droplets coated with hydrophobic powder that makes them roll freely without wetting surfaces. Computation is collision-based: two marbles directed at an intersection merge if their relative speed exceeds ~0.29 m/s (AND = 1, carry output) and rebound below that threshold (AND = 0, separate outputs). The three output trajectories encode AND and XOR simultaneously, forming a half-adder in a single interaction gate. By controlling routing channels and gate geometry, all classical gates (AND, OR, NOT, NAND, NOR, XOR) and the reversible Toffoli and Fredkin gates can be constructed. The Fredkin gate conserves marble count — no information is destroyed — making this a physical substrate for reversible and potentially thermodynamically efficient computing.",
+    "substrate": [
+      "fluidics"
+    ],
+    "computation_model": [
+      "collision-based",
+      "reversible-computation"
+    ],
+    "determinism": "deterministic",
+    "reversibility": "reversible",
+    "operations": [
+      "AND",
+      "OR",
+      "NOT",
+      "XOR",
+      "FANOUT"
+    ],
+    "exactness": "approximate",
+    "realization_type": "procedural",
+    "speed": "~0.1–1 s per gate (marble travel time at cm/s speeds)",
+    "compute_capacity": "gate-level; multi-cycle datapath demonstrated in simulation",
+    "examples": [
+      {
+        "url": "https://arxiv.org/abs/2405.17180",
+        "label": "Boolean Gates Based on Liquid Marbles (arXiv 2405.17180, 2024)",
+        "description": "Formal derivation of all classical and reversible gates (Toffoli, Fredkin) from liquid marble collision interactions"
+      },
+      {
+        "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0309066",
+        "label": "Implementing a multi-cycle datapath with Liquid Marbles (PLOS One, 2024)",
+        "description": "Simulation of a complete multi-cycle CPU datapath built from liquid marble interaction gates"
+      }
+    ]
+  },
+  {
+    "id": "tide-predictor",
+    "name": "Kelvin tide-predicting machine",
+    "realizes": "sum of sinusoids / tidal height (Fourier synthesis)",
+    "description": "Designed by Lord Kelvin (William Thomson) in 1872–73, this special-purpose mechanical analog computer performs real-time Fourier synthesis. Each tidal harmonic constituent (M2, S2, N2 …) is represented by a pulley on a crank whose radius sets the amplitude and whose rotation rate is geared to the constituent's period. A single wire threads over all pulleys in series; as a hand-crank advances time, the wire's endpoint traces the sum of all cosines, drawing the predicted tide curve on a paper roll. Kelvin's final version summed 24 harmonic components and could predict a full year of tides in about four hours. Variants were built for the US, India, and other nations and remained in operational use through World War II.",
+    "substrate": [
+      "mechanical"
+    ],
+    "computation_model": [
+      "analog-continuous"
+    ],
+    "determinism": "deterministic",
+    "reversibility": "irreversible",
+    "operations": [
+      "SUM",
+      "MULTIPLY-by-constant",
+      "COS"
+    ],
+    "exactness": "approximate",
+    "realization_type": "analogical",
+    "speed": "a full year of tidal predictions in ~4 hours of cranking",
+    "compute_capacity": "up to 40 harmonic components (later US machines); continuous output",
+    "examples": [
+      {
+        "url": "https://en.wikipedia.org/wiki/Tide-predicting_machine",
+        "label": "Tide-predicting machine — Wikipedia"
+      },
+      {
+        "url": "https://spectrum.ieee.org/tide-predictions",
+        "label": "Lord Kelvin's Tide-Predicting Machine — IEEE Spectrum",
+        "description": "History of the machine and its role in WWII naval operations, including its use for the D-Day landings"
+      },
+      {
+        "url": "https://hackaday.com/2015/10/08/how-analog-tide-predictors-changed-human-history/",
+        "label": "Hackaday — How Analog Tide Predictors Changed Human History",
+        "description": "Accessible explanation of the pulley-and-wire Fourier summation mechanism and the machine's historical impact"
+      }
+    ]
   }
 ]
