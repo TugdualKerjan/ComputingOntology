@@ -469,7 +469,6 @@
                 return Promise.reject(error);
             }
         }
-        let fileHandle = null;
 
         const activeFilters = { substrate: '', phenomenon: '', determinism: '', exactness: '', operation: '' };
         let textQuery = '';
@@ -599,36 +598,6 @@
             setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2800);
         }
 
-        document.getElementById('load-file').onclick = async () => {
-            try {
-                const [h] = await window.showOpenFilePicker({ types: [{ accept: { 'application/json': ['.json'] } }] });
-                fileHandle = h;
-                data = JSON.parse(await (await h.getFile()).text());
-                buildFilters(); render(); showToast('📁 Loaded', 'success');
-            } catch (e) { if (e.name !== 'AbortError') showToast('Error: ' + e.message, 'error'); }
-        };
-
-        document.getElementById('create-new').onclick = async () => {
-            try {
-                const h = await window.showSaveFilePicker({ suggestedName: 'physcomp.json', types: [{ accept: { 'application/json': ['.json'] } }] });
-                fileHandle = h;
-                const w = await h.createWritable();
-                await w.write(JSON.stringify(data, null, 2)); await w.close();
-                buildFilters(); render(); showToast('📝 Created', 'success');
-            } catch (e) { if (e.name !== 'AbortError') showToast('Error: ' + e.message, 'error'); }
-        };
-
-        document.getElementById('load-url').onclick = async () => {
-            const url = document.getElementById('url-input').value.trim();
-            if (!url) return;
-            try {
-                showToast('⏳ Loading…');
-                const r = await fetch(url);
-                if (!r.ok) throw new Error(`HTTP ${r.status}`);
-                data = await r.json();
-                fileHandle = null; buildFilters(); render(); showToast('🌐 Loaded (read-only)', 'success');
-            } catch (e) { showToast('Error: ' + e.message, 'error'); }
-        };
 
         document.getElementById('reset-all').onclick = () => {
             Object.keys(activeFilters).forEach(k => activeFilters[k] = '');
