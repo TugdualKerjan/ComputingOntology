@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physical Computing Ontology</title>
+    <style>
+        body {
+            font-family: monospace;
+            max-width: 780px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            background: #fff;
+            color: #111;
+        }
+
+        h1 {
+            margin-bottom: .25rem;
+        }
+
+        .subtitle {
+            font-size: .8rem;
+            color: #999;
+            margin-bottom: 2rem;
+        }
+
+        /* filter rows */
+        .filter-row {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            margin-bottom: .45rem;
+            flex-wrap: wrap;
+        }
+
+        .dim-label {
+            font-size: .7rem;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            min-width: 82px;
+            flex-shrink: 0;
+        }
+
+        select {
+            font-family: monospace;
+            font-size: .78rem;
+            border: 1px solid #ccc;
+            background: #fff;
+            color: #111;
+            padding: .25rem .4rem;
+            cursor: pointer;
+            min-width: 200px;
+        }
+
+        select.active {
+            border-color: #000;
+            background: #000;
+            color: #fff;
+        }
+
+        input {
+            font-family: monospace;
+            border: 1px solid #ccc;
+            padding: .3rem .5rem;
+            font-size: .85rem;
+            flex: 1;
+            min-width: 160px;
+        }
+
+        button {
+            font-family: monospace;
+            font-size: .78rem;
+            border: 1px solid #ccc;
+            background: #fff;
+            padding: .25rem .55rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        button:hover {
+            border-color: #999;
+        }
+
+        button.reset {
+            color: #999;
+        }
+
+        .count {
+            font-size: .75rem;
+            color: #999;
+            margin: .75rem 0 .5rem;
+        }
+
+        .divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 1.5rem 0 1rem;
+        }
+
+        /* list items */
+        .item {
+            border-top: 1px solid #eee;
+            padding: .85rem 0;
+            cursor: pointer;
+        }
+
+        .item:hover .item-name {
+            text-decoration: underline;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: .3rem;
+        }
+
+        .item-name {
+            font-size: .95rem;
+            font-weight: bold;
+        }
+
+        .item-realizes {
+            font-size: .8rem;
+            color: #555;
+            font-style: italic;
+            white-space: nowrap;
+        }
+
+        .item-desc {
+            font-size: .8rem;
+            color: #666;
+            margin-bottom: .45rem;
+            line-height: 1.5;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        /* tags */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .3rem;
+        }
+
+        .tag {
+            font-size: .68rem;
+            padding: .15rem .4rem;
+            border: 1px solid #ddd;
+        }
+
+        .tag.substrate {
+            border-color: #a0c4ff;
+            color: #004494;
+        }
+
+        .tag.phenomenon {
+            border-color: #b9fbc0;
+            color: #1a6b2a;
+        }
+
+        .tag.determinism {
+            border-color: #ffd6a5;
+            color: #7a4200;
+        }
+
+        .tag.exactness {
+            border-color: #ffc8dd;
+            color: #7a0030;
+        }
+
+        .tag.operation {
+            border-color: #d0bfff;
+            color: #3a006f;
+        }
+
+        .tag.model {
+            border-color: #ddd;
+            color: #555;
+        }
+
+        /* legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .5rem;
+            margin-bottom: 1rem;
+            font-size: .7rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: .3rem;
+        }
+
+        .legend-dot {
+            width: 8px;
+            height: 8px;
+            border: 1px solid;
+            display: inline-block;
+        }
+
+        .legend-dot.substrate {
+            border-color: #a0c4ff;
+            background: #e8f1ff;
+        }
+
+        .legend-dot.phenomenon {
+            border-color: #b9fbc0;
+            background: #eaffed;
+        }
+
+        .legend-dot.determinism {
+            border-color: #ffd6a5;
+            background: #fff5e8;
+        }
+
+        .legend-dot.exactness {
+            border-color: #ffc8dd;
+            background: #fff0f5;
+        }
+
+        .legend-dot.operation {
+            border-color: #d0bfff;
+            background: #f4f0ff;
+        }
+
+        .legend-dot.model {
+            border-color: #ddd;
+            background: #f7f7f7;
+        }
+
+        /* detail page */
+        #detail-page {
+            display: none;
+        }
+
+        .back-btn {
+            font-family: monospace;
+            font-size: .8rem;
+            border: none;
+            background: none;
+            padding: 0;
+            cursor: pointer;
+            color: #999;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .back-btn:hover {
+            color: #000;
+        }
+
+        .detail-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin-bottom: .2rem;
+        }
+
+        .detail-realizes {
+            font-size: .9rem;
+            color: #555;
+            font-style: italic;
+            margin-bottom: 1rem;
+        }
+
+        .detail-desc {
+            font-size: .85rem;
+            color: #444;
+            line-height: 1.65;
+            margin-bottom: 1.25rem;
+        }
+
+        .detail-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .35rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .detail-section {
+            margin-bottom: 1.25rem;
+        }
+
+        .detail-section h3 {
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: .06em;
+            color: #999;
+            margin: 0 0 .5rem;
+            border-bottom: 1px solid #eee;
+            padding-bottom: .3rem;
+        }
+
+        .detail-section ul {
+            margin: 0;
+            padding-left: 1.2rem;
+            font-size: .82rem;
+            color: #444;
+            line-height: 1.7;
+        }
+
+        .detail-section p {
+            font-size: .82rem;
+            color: #444;
+            margin: 0;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .link-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .link-list li {
+            margin-bottom: .6rem;
+            display: flex;
+            align-items: center;
+            gap: .6rem;
+        }
+
+        .link-list li img {
+            width: 80px;
+            height: 45px;
+            object-fit: cover;
+            border: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        .link-list a {
+            font-size: .82rem;
+            color: #004494;
+            text-decoration: none;
+            border-bottom: 1px solid #a0c4ff;
+        }
+
+        .link-list a:hover {
+            border-color: #004494;
+        }
+
+        /* toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 10px 18px;
+            font-family: monospace;
+            font-size: .85rem;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateX(100%);
+            transition: all .25s ease;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: #2d6a2d;
+        }
+
+        .toast.error {
+            background: #8b0000;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- LIST PAGE -->
+    <div id="list-page">
+        <h1>Physical Computing</h1>
+        <p class="subtitle">An ontology of physical systems that realize mathematical functions. Each entry answers:
+            f(x) = ? and under what conditions.</p>
+
+        <hr class="divider">
+
+        <div class="legend">
+            <span class="legend-item"><span class="legend-dot substrate"></span>substrate</span>
+            <span class="legend-item"><span class="legend-dot phenomenon"></span>phenomenon</span>
+            <span class="legend-item"><span class="legend-dot determinism"></span>determinism</span>
+            <span class="legend-item"><span class="legend-dot exactness"></span>exactness</span>
+            <span class="legend-item"><span class="legend-dot operation"></span>operation</span>
+            <span class="legend-item"><span class="legend-dot model"></span>model</span>
+        </div>
+
+        <div class="filter-row"><span class="dim-label">substrate</span><select id="sel-substrate"></select></div>
+        <div class="filter-row"><span class="dim-label">phenomenon</span><select id="sel-phenomenon"></select></div>
+        <div class="filter-row"><span class="dim-label">determinism</span><select id="sel-determinism"></select></div>
+        <div class="filter-row"><span class="dim-label">exactness</span><select id="sel-exactness"></select></div>
+        <div class="filter-row"><span class="dim-label">operation</span><select id="sel-operation"></select></div>
+        <div class="filter-row">
+            <input id="filter-text" placeholder="Filter by name, realizes, description…">
+            <button class="reset" id="reset-all">✕ reset</button>
+        </div>
+
+        <div class="count" id="count"></div>
+        <div id="list"></div>
+    </div>
+
+    <!-- DETAIL PAGE -->
+    <div id="detail-page">
+        <button class="back-btn" id="back-btn">← back to list</button>
+        <div id="detail-content"></div>
+    </div>
+
+    <script>
+        function ytId(url) {
+            const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+            return m ? m[1] : null;
+        }
+        function ytThumb(url) {
+            const id = ytId(url);
+            return id ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : null;
+        }
+
+        let data = [];
+
+        // Load data from external JSON file
+        async function loadData() {
+            try {
+                const response = await fetch('https://tugdual.fr/ComputingOntology/data.json');
+                if (!response.ok) throw new Error(`Failed to load data.json: ${response.status}`);
+                data = await response.json();
+                buildFilters();
+                render();
+                showToast('Data loaded successfully', 'success');
+                return Promise.resolve();
+            } catch (error) {
+                showToast('Error loading data.json: ' + error.message, 'error');
+                console.error('Failed to load data:', error);
+                return Promise.reject(error);
+            }
+        }
+        let fileHandle = null;
+
+        const activeFilters = { substrate: '', phenomenon: '', determinism: '', exactness: '', operation: '' };
+        let textQuery = '';
+
+        function vocab(dim) {
+            const vals = new Set();
+            data.forEach(d => {
+                const v = d[dim === 'operation' ? 'operations' : dim];
+                if (Array.isArray(v)) v.forEach(x => vals.add(x));
+                else if (v) vals.add(v);
+            });
+            return [...vals].sort();
+        }
+
+        function buildFilters() {
+            ['substrate', 'phenomenon', 'determinism', 'exactness', 'operation'].forEach(dim => {
+                const sel = document.getElementById(`sel-${dim}`);
+                const cur = activeFilters[dim];
+                sel.innerHTML = '<option value="">— all —</option>';
+                vocab(dim).forEach(v => {
+                    const o = document.createElement('option');
+                    o.value = v; o.textContent = v;
+                    if (v === cur) o.selected = true;
+                    sel.appendChild(o);
+                });
+                sel.classList.toggle('active', !!cur);
+                sel.onchange = () => {
+                    activeFilters[dim] = sel.value;
+                    sel.classList.toggle('active', !!sel.value);
+                    render();
+                };
+            });
+        }
+
+        function render() {
+            const visible = data.filter(d => {
+                if (activeFilters.substrate && !(d.substrate || []).includes(activeFilters.substrate)) return false;
+                if (activeFilters.phenomenon && !(d.phenomenon || []).includes(activeFilters.phenomenon)) return false;
+                if (activeFilters.determinism && d.determinism !== activeFilters.determinism) return false;
+                if (activeFilters.exactness && d.exactness !== activeFilters.exactness) return false;
+                if (activeFilters.operation && !(d.operations || []).includes(activeFilters.operation)) return false;
+                if (textQuery) {
+                    const hay = [d.name, d.realizes, d.description].join(' ').toLowerCase();
+                    if (!hay.includes(textQuery.toLowerCase())) return false;
+                }
+                return true;
+            });
+            document.getElementById('count').textContent = `${visible.length} / ${data.length} systems`;
+            document.getElementById('list').innerHTML = visible.map(d => `
+    <div class="item" onclick="showDetail('${d.id}')">
+      <div class="item-header">
+        <span class="item-name">${d.name}</span>
+        <span class="item-realizes">f(x) = ${d.realizes}</span>
+      </div>
+      <div class="item-desc">${d.description}</div>
+      <div class="tags">
+        ${(d.substrate || []).map(v => `<span class="tag substrate">${v}</span>`).join('')}
+        ${(d.phenomenon || []).map(v => `<span class="tag phenomenon">${v}</span>`).join('')}
+        ${d.determinism ? `<span class="tag determinism">${d.determinism}</span>` : ''}
+        ${d.exactness ? `<span class="tag exactness">${d.exactness}</span>` : ''}
+        ${(d.operations || []).map(v => `<span class="tag operation">${v}</span>`).join('')}
+        ${(d.computation_model || []).map(v => `<span class="tag model">${v}</span>`).join('')}
+      </div>
+    </div>`).join('');
+        }
+
+        function showDetail(id) {
+            const d = data.find(x => x.id === id);
+            if (!d) return;
+
+            // Update URL without triggering page reload
+            window.history.pushState({ id }, d.name, `#${id}`);
+
+            const exHtml = (d.examples || []).length ? `
+    <div class="detail-section">
+      <h3>Examples</h3>
+      <ul class="link-list">
+        ${d.examples.map(e => {
+                const thumb = ytThumb(e.url);
+                return `<li>${thumb ? `<img src="${thumb}" alt="">` : ''}<a href="${e.url}" target="_blank" rel="noopener">${e.label}</a></li>`;
+            }).join('')}
+      </ul>
+    </div>` : '';
+
+            const diyHtml = (d.diy || []).length ? `
+    <div class="detail-section">
+      <h3>Build your own</h3>
+      <ul class="link-list">
+        ${d.diy.map(e => `<li><a href="${e.url}" target="_blank" rel="noopener">${e.label}</a></li>`).join('')}
+      </ul>
+    </div>` : '';
+
+            document.getElementById('detail-content').innerHTML = `
+    <div class="detail-name">${d.name}</div>
+    <div class="detail-realizes">f(x) = ${d.realizes}</div>
+    <div class="detail-tags">
+      ${(d.substrate || []).map(v => `<span class="tag substrate">${v}</span>`).join('')}
+      ${(d.phenomenon || []).map(v => `<span class="tag phenomenon">${v}</span>`).join('')}
+      ${d.determinism ? `<span class="tag determinism">${d.determinism}</span>` : ''}
+      ${d.exactness ? `<span class="tag exactness">${d.exactness}</span>` : ''}
+      ${(d.operations || []).map(v => `<span class="tag operation">${v}</span>`).join('')}
+      ${(d.computation_model || []).map(v => `<span class="tag model">${v}</span>`).join('')}
+    </div>
+    <div class="detail-desc">${d.description}</div>
+    ${d.conditions_of_correctness ? `<div class="detail-section"><h3>Correct when</h3><ul>${d.conditions_of_correctness.map(c => `<li>${c}</li>`).join('')}</ul></div>` : ''}
+    ${d.breaks_when ? `<div class="detail-section"><h3>Breaks when</h3><p>${d.breaks_when}</p></div>` : ''}
+    ${exHtml}
+    ${diyHtml}
+  `;
+
+            document.getElementById('list-page').style.display = 'none';
+            document.getElementById('detail-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+
+        function showList() {
+            window.history.pushState({}, 'Physical Computing', window.location.pathname);
+            document.getElementById('detail-page').style.display = 'none';
+            document.getElementById('list-page').style.display = 'block';
+        }
+
+        document.getElementById('back-btn').onclick = showList;
+
+        function showToast(msg, type = '') {
+            const t = document.createElement('div');
+            t.className = `toast ${type}`; t.textContent = msg;
+            document.body.appendChild(t);
+            setTimeout(() => t.classList.add('show'), 50);
+            setTimeout(() => { t.classList.remove('show'); setTimeout(() => t.remove(), 300); }, 2800);
+        }
+
+        document.getElementById('load-file').onclick = async () => {
+            try {
+                const [h] = await window.showOpenFilePicker({ types: [{ accept: { 'application/json': ['.json'] } }] });
+                fileHandle = h;
+                data = JSON.parse(await (await h.getFile()).text());
+                buildFilters(); render(); showToast('📁 Loaded', 'success');
+            } catch (e) { if (e.name !== 'AbortError') showToast('Error: ' + e.message, 'error'); }
+        };
+
+        document.getElementById('create-new').onclick = async () => {
+            try {
+                const h = await window.showSaveFilePicker({ suggestedName: 'physcomp.json', types: [{ accept: { 'application/json': ['.json'] } }] });
+                fileHandle = h;
+                const w = await h.createWritable();
+                await w.write(JSON.stringify(data, null, 2)); await w.close();
+                buildFilters(); render(); showToast('📝 Created', 'success');
+            } catch (e) { if (e.name !== 'AbortError') showToast('Error: ' + e.message, 'error'); }
+        };
+
+        document.getElementById('load-url').onclick = async () => {
+            const url = document.getElementById('url-input').value.trim();
+            if (!url) return;
+            try {
+                showToast('⏳ Loading…');
+                const r = await fetch(url);
+                if (!r.ok) throw new Error(`HTTP ${r.status}`);
+                data = await r.json();
+                fileHandle = null; buildFilters(); render(); showToast('🌐 Loaded (read-only)', 'success');
+            } catch (e) { showToast('Error: ' + e.message, 'error'); }
+        };
+
+        document.getElementById('reset-all').onclick = () => {
+            Object.keys(activeFilters).forEach(k => activeFilters[k] = '');
+            document.getElementById('filter-text').value = '';
+            textQuery = '';
+            buildFilters(); render();
+        };
+
+        document.getElementById('filter-text').oninput = e => { textQuery = e.target.value; render(); };
+
+        function handleRoute() {
+            const hash = window.location.hash.slice(1);
+            if (hash && data.length > 0) {
+                const entry = data.find(d => d.id === hash);
+                if (entry) {
+                    showDetail(hash);
+                    return;
+                }
+            }
+            showList();
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('popstate', handleRoute);
+
+        // Initialize the application
+        loadData().then(() => {
+            handleRoute();
+        });
+    </script>
+</body>
+
+</html>
