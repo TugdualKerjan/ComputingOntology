@@ -81,43 +81,6 @@
         "enum": ["reversible", "irreversible"],
         "description": "Whether the computation is reversible"
       },
-      "operations": {
-        "type": "array",
-        "items": {
-          "type": "string",
-          "enum": [
-            "MINIMIZE",
-            "ADD",
-            "MULTIPLY",
-            "DIVIDE",
-            "AND",
-            "OR",
-            "NOT",
-            "SHIFT",
-            "SAMPLE",
-            "LOG",
-            "ROOT",
-            "FANOUT",
-            "INTEGRATE",
-            "MULTIPLY-by-constant",
-            "HADAMARD",
-            "CNOT",
-            "PHASE",
-            "PAULI-X",
-            "PAULI-Y",
-            "PAULI-Z",
-            "INTEGRATE-AND-FIRE",
-            "WEIGHTED-SUM",
-            "THRESHOLD",
-            "SEARCH",
-            "SELECT",
-            "NONLINEAR-TRANSFORM",
-            "MEMORY",
-            "DIFFERENTIATE"
-          ]
-        },
-        "description": "Operations that can be performed"
-      },
       "exactness": {
         "type": "string",
         "enum": ["exact", "approximate", "exact-in-limit", "heuristic"],
@@ -128,28 +91,6 @@
         "enum": ["variational", "procedural", "statistical", "analogical"],
         "description": "Type of computational realization"
       },
-      "speed_category": {
-        "type": "string",
-        "enum": ["instantaneous", "seconds", "minutes", "hours", "days"],
-        "description": "Speed category of the computation"
-      },
-      "speed_notes": {
-        "type": "string",
-        "description": "Additional details about computation speed"
-      },
-      "scale_category": {
-        "type": "string",
-        "enum": ["single-op", "small", "medium", "large", "unbounded"],
-        "description": "Scale category of computational capacity"
-      },
-      "compute_capacity_notes": {
-        "type": "string",
-        "description": "Details about computational capacity and limitations"
-      },
-      "energy_per_operation": {
-        "type": "string",
-        "description": "Energy consumption per operation"
-},
       "diy": {
         "type": "array",
         "items": {
@@ -172,9 +113,60 @@
             "id": {"type": "string", "description": "Unique identifier for the example"},
             "url": {"type": "string"},
             "label": {"type": "string"},
-            "description": {"type": "string"}
+            "description": {"type": "string"},
+            "operations": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "MINIMIZE",
+                  "ADD",
+                  "MULTIPLY",
+                  "DIVIDE",
+                  "AND",
+                  "OR",
+                  "NOT",
+                  "SHIFT",
+                  "SAMPLE",
+                  "LOG",
+                  "ROOT",
+                  "FANOUT",
+                  "INTEGRATE",
+                  "MULTIPLY-by-constant",
+                  "HADAMARD",
+                  "CNOT",
+                  "PHASE",
+                  "PAULI-X",
+                  "PAULI-Y",
+                  "PAULI-Z",
+                  "INTEGRATE-AND-FIRE",
+                  "WEIGHTED-SUM",
+                  "THRESHOLD",
+                  "SEARCH",
+                  "SELECT",
+                  "NONLINEAR-TRANSFORM",
+                  "MEMORY",
+                  "DIFFERENTIATE"
+                ]
+              },
+              "description": "Operations demonstrated in this example"
+            },
+            "speed_category": {
+              "type": "string",
+              "enum": ["instantaneous", "seconds", "minutes", "hours", "days"],
+              "description": "Speed category of this example"
+            },
+            "scale_category": {
+              "type": "string",
+              "enum": ["single-op", "small", "medium", "large", "unbounded"],
+              "description": "Scale category of this example"
+            },
+            "energy_per_operation": {
+              "type": "string",
+              "description": "Energy consumption per operation for this example"
+            }
           },
-          "required": ["id", "url", "label"],
+          "required": ["id", "url", "label", "operations", "speed_category", "scale_category", "energy_per_operation"],
           "additionalProperties": false
         },
         "description": "Video and demonstration examples"
@@ -189,12 +181,8 @@
       "computation_model",
       "determinism",
       "reversibility",
-      "operations",
       "exactness",
-      "realization_type",
-      "speed_category",
-      "scale_category",
-      "energy_per_operation"
+      "realization_type"
     ],
     "additionalProperties": false
       }

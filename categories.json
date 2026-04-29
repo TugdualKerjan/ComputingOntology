@@ -38,36 +38,6 @@
     "reversible",
     "irreversible"
   ],
-  "operations": [
-    "MINIMIZE",
-    "ADD",
-    "MULTIPLY",
-    "DIVIDE",
-    "AND",
-    "OR",
-    "NOT",
-    "SHIFT",
-    "SAMPLE",
-    "LOG",
-    "ROOT",
-    "FANOUT",
-    "INTEGRATE",
-    "MULTIPLY-by-constant",
-    "HADAMARD",
-    "CNOT",
-    "PHASE",
-    "PAULI-X",
-    "PAULI-Y",
-    "PAULI-Z",
-    "INTEGRATE-AND-FIRE",
-    "WEIGHTED-SUM",
-    "THRESHOLD",
-    "SEARCH",
-    "SELECT",
-    "NONLINEAR-TRANSFORM",
-    "MEMORY",
-    "DIFFERENTIATE"
-  ],
   "exactness": [
     "exact",
     "approximate",
@@ -79,19 +49,5 @@
     "procedural",
     "statistical",
     "analogical"
-  ],
-  "speed_category": [
-    "instantaneous",
-    "seconds",
-    "minutes",
-    "hours",
-    "days"
-  ],
-  "scale_category": [
-    "single-op",
-    "small",
-    "medium",
-    "large",
-    "unbounded"
   ]
 }

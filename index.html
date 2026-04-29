@@ -612,16 +612,58 @@
         const activeFilters = { substrate: '', determinism: '', exactness: '', operation: '', energy_per_operation: '', computation_model: '', speed_category: '', scale_category: '' };
         let textQuery = '';
 
+        // Helper functions to aggregate example-level data
+        function getSystemOperations(system) {
+            const operations = new Set();
+            (system.examples || []).forEach(ex => {
+                (ex.operations || []).forEach(op => operations.add(op));
+            });
+            return [...operations].sort();
+        }
+
+        function getSystemSpeeds(system) {
+            const speeds = new Set();
+            (system.examples || []).forEach(ex => {
+                if (ex.speed_category) speeds.add(ex.speed_category);
+            });
+            return [...speeds].sort();
+        }
+
+        function getSystemScales(system) {
+            const scales = new Set();
+            (system.examples || []).forEach(ex => {
+                if (ex.scale_category) scales.add(ex.scale_category);
+            });
+            return [...scales].sort();
+        }
+
+        function getSystemEnergies(system) {
+            const energies = new Set();
+            (system.examples || []).forEach(ex => {
+                if (ex.energy_per_operation) energies.add(ex.energy_per_operation);
+            });
+            return [...energies].sort();
+        }
+
         function vocab(dim) {
             const vals = new Set();
             data.forEach(d => {
                 let v;
-                if (dim === 'operation') v = d.operations;
-                else if (dim === 'computation_model') v = d.computation_model;
-                else v = d[dim];
-
-                if (Array.isArray(v)) v.forEach(x => vals.add(x));
-                else if (v) vals.add(v);
+                // Performance fields are now at example level
+                if (['operation', 'speed_category', 'scale_category', 'energy_per_operation'].includes(dim)) {
+                    (d.examples || []).forEach(ex => {
+                        if (dim === 'operation') v = ex.operations;
+                        else v = ex[dim];
+                        if (Array.isArray(v)) v.forEach(x => vals.add(x));
+                        else if (v) vals.add(v);
+                    });
+                } else {
+                    // System-level fields
+                    if (dim === 'computation_model') v = d.computation_model;
+                    else v = d[dim];
+                    if (Array.isArray(v)) v.forEach(x => vals.add(x));
+                    else if (v) vals.add(v);
+                }
             });
             return [...vals].sort();
         }
@@ -651,11 +693,25 @@
                 if (activeFilters.substrate && !(d.substrate || []).includes(activeFilters.substrate)) return false;
                 if (activeFilters.determinism && d.determinism !== activeFilters.determinism) return false;
                 if (activeFilters.exactness && d.exactness !== activeFilters.exactness) return false;
-                if (activeFilters.operation && !(d.operations || []).includes(activeFilters.operation)) return false;
-                if (activeFilters.energy_per_operation && d.energy_per_operation !== activeFilters.energy_per_operation) return false;
                 if (activeFilters.computation_model && !(d.computation_model || []).includes(activeFilters.computation_model)) return false;
-                if (activeFilters.speed_category && d.speed_category !== activeFilters.speed_category) return false;
-                if (activeFilters.scale_category && d.scale_category !== activeFilters.scale_category) return false;
+
+                // Performance filters now check examples
+                if (activeFilters.operation) {
+                    const hasOperation = (d.examples || []).some(ex => (ex.operations || []).includes(activeFilters.operation));
+                    if (!hasOperation) return false;
+                }
+                if (activeFilters.energy_per_operation) {
+                    const hasEnergy = (d.examples || []).some(ex => ex.energy_per_operation === activeFilters.energy_per_operation);
+                    if (!hasEnergy) return false;
+                }
+                if (activeFilters.speed_category) {
+                    const hasSpeed = (d.examples || []).some(ex => ex.speed_category === activeFilters.speed_category);
+                    if (!hasSpeed) return false;
+                }
+                if (activeFilters.scale_category) {
+                    const hasScale = (d.examples || []).some(ex => ex.scale_category === activeFilters.scale_category);
+                    if (!hasScale) return false;
+                }
                 if (textQuery) {
                     const hay = [d.name, d.realizes, d.description].join(' ').toLowerCase();
                     if (!hay.includes(textQuery.toLowerCase())) return false;
@@ -674,7 +730,7 @@
         ${(d.substrate || []).map(v => `<span class="tag substrate">${v}</span>`).join('')}
         ${d.determinism ? `<span class="tag determinism">${d.determinism}</span>` : ''}
         ${d.exactness ? `<span class="tag exactness">${d.exactness}</span>` : ''}
-        ${(d.operations || []).map(v => `<span class="tag operation">${v}</span>`).join('')}
+        ${getSystemOperations(d).map(v => `<span class="tag operation">${v}</span>`).join('')}
         ${(d.computation_model || []).map(v => `<span class="tag model">${v}</span>`).join('')}
       </div>
     </div>`).join('');
@@ -766,9 +822,9 @@
                 { label: 'Determinism', field: 'determinism', values: [system.determinism] },
                 { label: 'Reversibility', field: 'reversibility', values: [system.reversibility] },
                 { label: 'Exactness', field: 'exactness', values: [system.exactness] },
-                { label: 'Operations', field: 'operations', values: system.operations },
-                { label: 'Speed', field: 'speed_category', values: [system.speed_category] },
-                { label: 'Scale', field: 'scale_category', values: [system.scale_category] }
+                { label: 'Operations', field: 'operations', values: getSystemOperations(system) },
+                { label: 'Speed', field: 'speed_category', values: getSystemSpeeds(system) },
+                { label: 'Scale', field: 'scale_category', values: getSystemScales(system) }
             ].filter(cat => cat.values && cat.values.length > 0);
 
             return `

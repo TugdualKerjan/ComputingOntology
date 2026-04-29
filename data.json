@@ -5,7 +5,7 @@
       "id": "catenary",
       "name": "Hanging chain (catenary)",
       "realizes": "hyperbolic cosine / thrust line",
-      "description": "A chain suspended from two fixed points and left to hang under gravity settles into a curve that exactly realizes the hyperbolic cosine. Gaud\u00ed used physical catenaries (inverted) to design the arches of the Sagrada Fam\u00edlia.",
+      "description": "A chain suspended from two fixed points and left to hang under gravity settles into a curve that exactly realizes the hyperbolic cosine. Gaud\u00ed used physical catenaries (inverted) to design the arches of the Sagrada Fam\u00edlia. Speed: instantaneous (static equilibrium). Capacity: single function evaluation (hyperbolic cosine).",
       "substrate": [
         "mechanical"
       ],
@@ -15,28 +15,32 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "exact",
       "realization_type": "variational",
-      "speed_category": "instantaneous",
-      "speed_notes": "instantaneous (static equilibrium)",
-      "scale_category": "single-op",
-      "compute_capacity_notes": "single function evaluation (hyperbolic cosine)",
-      "energy_per_operation": "~1 J (mechanical)",
       "examples": [
         {
           "id": "gaudi-catenaries",
           "url": "https://www.youtube.com/watch?v=73Bs-IBUpOc",
           "label": "Gaudi: Flipping Catenaries",
-          "description": "How Gaud\u00ed used inverted hanging chains to find the optimal thrust line for arches, then mirrored the result to design the Col\u00f2nia G\u00fcell chapel"
+          "description": "How Gaud\u00ed used inverted hanging chains to find the optimal thrust line for arches, then mirrored the result to design the Col\u00f2nia G\u00fcell chapel",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "id": "gaudi-hanging-models",
           "url": "https://dataphys.org/list/gaudis-hanging-chain-models/",
           "label": "Gaud\u00ed's Hanging Chain Models \u2014 dataphys.org",
-          "description": "Historical overview of Gaud\u00ed's polyfunicular models using weighted strings for the Col\u00f2nia G\u00fcell church"
+          "description": "Historical overview of Gaud\u00ed's polyfunicular models using weighted strings for the Col\u00f2nia G\u00fcell church",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         }
       ]
     },
@@ -44,7 +48,7 @@
       "id": "soap-film",
       "name": "Soap film",
       "realizes": "minimal surface (Plateau's problem)",
-      "description": "A soap film spanning a closed wire boundary settles into the surface of minimum area \u2014 the solution to Plateau's problem. For two parallel rings it realizes a catenoid. Can approximate Steiner trees for planar point sets.",
+      "description": "A soap film spanning a closed wire boundary settles into the surface of minimum area \u2014 the solution to Plateau's problem. For two parallel rings it realizes a catenoid. Can approximate Steiner trees for planar point sets. Speed: seconds to minutes (surface tension equilibration). Capacity: continuous optimization over infinite-dimensional space.",
       "substrate": [
         "fluidics"
       ],
@@ -54,22 +58,28 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "exact",
       "realization_type": "variational",
-      "speed_category": "minutes",
-      "speed_notes": "seconds to minutes (surface tension equilibration)",
-      "scale_category": "unbounded",
-      "compute_capacity_notes": "continuous optimization over infinite-dimensional space",
-      "energy_per_operation": "~1 mJ (surface tension)"
+      "examples": [
+        {
+          "id": "soap-film-default",
+          "url": "",
+          "label": "Default Soap film implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "unbounded",
+          "energy_per_operation": "~1 mJ (surface tension)"
+        }
+      ]
     },
     {
       "id": "marble-adder",
       "name": "Marble computer",
       "realizes": "binary arithmetic / boolean logic",
-      "description": "Gravity-fed marble runs with rocker/seesaw gates implement binary arithmetic and logic operations. One marble = 1 bit. The rocker flips state on each pass, implementing half-adders and logic gates. The Digi-Comp II (1965) is the canonical plastic educational design, while K'NEX construction sets allow modular prototyping of custom layouts.",
+      "description": "Gravity-fed marble runs with rocker/seesaw gates implement binary arithmetic and logic operations. One marble = 1 bit. The rocker flips state on each pass, implementing half-adders and logic gates. The Digi-Comp II (1965) is the canonical plastic educational design, while K'NEX construction sets allow modular prototyping of custom layouts. Speed: ~1-10 seconds per operation (marble transit time). Capacity: 3-8 bit operations (modular, expandable).",
       "substrate": [
         "mechanical"
       ],
@@ -79,20 +89,8 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "ADD",
-        "MULTIPLY",
-        "AND",
-        "OR",
-        "NOT",
-        "SHIFT"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "~1-10 seconds per operation (marble transit time)",
-      "scale_category": "small",
-      "compute_capacity_notes": "3-8 bit operations (modular, expandable)",
       "diy": [
         {
           "url": "https://binarymarbles.weebly.com/build-your-own.html",
@@ -110,40 +108,94 @@
           "id": "marble-adder-wooden",
           "url": "https://www.youtube.com/watch?v=G8VldC_8o9k",
           "label": "Marble adding machine in action",
-          "description": "Demonstration of a wooden marble adder performing binary arithmetic with gravity-fed marbles and flip-flop gates"
+          "description": "Demonstration of a wooden marble adder performing binary arithmetic with gravity-fed marbles and flip-flop gates",
+          "operations": [
+            "ADD",
+            "MULTIPLY",
+            "AND",
+            "OR",
+            "NOT",
+            "SHIFT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (gravitational potential)"
         },
         {
           "id": "digicomp-ii-demo",
           "url": "https://www.youtube.com/watch?v=hrzIorNgpBU",
           "label": "DigiComp II demonstration",
-          "description": "Complete walkthrough of the DigiComp II plastic marble computer, showing binary addition, multiplication, and logic operations"
+          "description": "Complete walkthrough of the DigiComp II plastic marble computer, showing binary addition, multiplication, and logic operations",
+          "operations": [
+            "ADD",
+            "MULTIPLY",
+            "AND",
+            "OR",
+            "NOT",
+            "SHIFT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (gravitational potential)"
         },
         {
           "id": "digicomp-ii-addition",
           "url": "https://www.youtube.com/watch?v=GcDshWmhF4A",
           "label": "DigiComp II binary addition",
-          "description": "Focused demonstration of how the DigiComp II performs binary addition using marble-actuated flip-flop gates"
+          "description": "Focused demonstration of how the DigiComp II performs binary addition using marble-actuated flip-flop gates",
+          "operations": [
+            "ADD",
+            "MULTIPLY",
+            "AND",
+            "OR",
+            "NOT",
+            "SHIFT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (gravitational potential)"
         },
         {
           "id": "knex-marble-computer",
           "url": "https://www.youtube.com/watch?v=EtIJUwkOAwM",
           "label": "K'NEX binary marble computer",
-          "description": "K'NEX construction set used to build a working marble computer with modular logic gates and binary counters"
+          "description": "K'NEX construction set used to build a working marble computer with modular logic gates and binary counters",
+          "operations": [
+            "ADD",
+            "MULTIPLY",
+            "AND",
+            "OR",
+            "NOT",
+            "SHIFT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (gravitational potential)"
         },
         {
           "id": "knex-logic-gates",
           "url": "https://www.youtube.com/watch?v=rdT1YT9AOPA",
           "label": "K'NEX marble logic gates",
-          "description": "Individual K'NEX marble logic gate designs showing AND, OR operations with snap-fit modular construction"
+          "description": "Individual K'NEX marble logic gate designs showing AND, OR operations with snap-fit modular construction",
+          "operations": [
+            "ADD",
+            "MULTIPLY",
+            "AND",
+            "OR",
+            "NOT",
+            "SHIFT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (gravitational potential)"
         }
-      ],
-      "energy_per_operation": "~1 J (gravitational potential)"
+      ]
     },
     {
       "id": "domino-logic",
       "name": "Domino computer",
       "realizes": "boolean logic (AND, OR, NOT)",
-      "description": "Standing dominoes propagate a falling signal. Fan-outs split signals, and careful geometry implements AND and OR gates. Signal is one-shot \u2014 must reset by standing dominoes again.",
+      "description": "Standing dominoes propagate a falling signal. Fan-outs split signals, and careful geometry implements AND and OR gates. Signal is one-shot \u2014 must reset by standing dominoes again. Speed: ~1 domino per second propagation (~10-50 seconds total). Capacity: single boolean expression evaluation (one-shot).",
       "substrate": [
         "mechanical"
       ],
@@ -152,31 +204,29 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "~1 domino per second propagation (~10-50 seconds total)",
-      "scale_category": "single-op",
-      "compute_capacity_notes": "single boolean expression evaluation (one-shot)",
       "examples": [
         {
           "id": "domino-binary-adder",
           "url": "https://www.youtube.com/watch?v=OpLU__bhu2w",
-          "label": "Matt Parker \u2014 domino binary adder"
+          "label": "Matt Parker \u2014 domino binary adder",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 mJ (kinetic)"
         }
-      ],
-      "energy_per_operation": "~1 mJ (kinetic)"
+      ]
     },
     {
       "id": "galton-board",
       "name": "Galton board (bean machine)",
       "realizes": "Gaussian / binomial distribution",
-      "description": "Balls dropped through a triangular array of pegs deflect left or right at each level. The distribution of balls in the output bins converges to a Gaussian as N\u2192\u221e. Each peg is an independent Bernoulli trial.",
+      "description": "Balls dropped through a triangular array of pegs deflect left or right at each level. The distribution of balls in the output bins converges to a Gaussian as N\u2192\u221e. Each peg is an independent Bernoulli trial. Speed: minutes to hours (depending on ball count). Capacity: statistical sampling (scales with number of balls).",
       "substrate": [
         "mechanical"
       ],
@@ -185,22 +235,28 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "SAMPLE"
-      ],
       "exactness": "exact-in-limit",
       "realization_type": "statistical",
-      "speed_category": "hours",
-      "speed_notes": "minutes to hours (depending on ball count)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "statistical sampling (scales with number of balls)",
-      "energy_per_operation": "~1 mJ (kinetic)"
+      "examples": [
+        {
+          "id": "galton-board-default",
+          "url": "",
+          "label": "Default Galton board (bean machine) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "SAMPLE"
+          ],
+          "speed_category": "hours",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 mJ (kinetic)"
+        }
+      ]
     },
     {
       "id": "slime-mold",
       "name": "Physarum polycephalum (slime mold)",
       "realizes": "Steiner tree / shortest transport network (approximate)",
-      "description": "The plasmodial slime mold extends filaments toward nutrient sources and progressively reinforces paths that carry more flow, pruning inefficient routes. Toshiyuki Nakagaki showed it reproduces the Tokyo rail network topology.",
+      "description": "The plasmodial slime mold extends filaments toward nutrient sources and progressively reinforces paths that carry more flow, pruning inefficient routes. Toshiyuki Nakagaki showed it reproduces the Tokyo rail network topology. Speed: hours to days (biological growth/optimization). Capacity: network optimization problems with ~10-100 nodes.",
       "substrate": [
         "biological"
       ],
@@ -210,22 +266,28 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "statistical",
-      "speed_category": "days",
-      "speed_notes": "hours to days (biological growth/optimization)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "network optimization problems with ~10-100 nodes",
-      "energy_per_operation": "~1 \u03bcJ (biochemical)"
+      "examples": [
+        {
+          "id": "slime-mold-default",
+          "url": "",
+          "label": "Default Physarum polycephalum (slime mold) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "days",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 \u03bcJ (biochemical)"
+        }
+      ]
     },
     {
       "id": "analog-annealing",
       "name": "Simulated annealing (thermal)",
       "realizes": "argmin of energy / cost landscape",
-      "description": "A physical system coupled to a heat bath at slowly decreasing temperature explores its energy landscape. At high temperature it escapes local minima; as T\u21920 it settles into a global minimum \u2014 if cooling is slow enough.",
+      "description": "A physical system coupled to a heat bath at slowly decreasing temperature explores its energy landscape. At high temperature it escapes local minima; as T\u21920 it settles into a global minimum \u2014 if cooling is slow enough. Speed: minutes to hours (depends on cooling schedule). Capacity: global optimization problems (scales exponentially with problem size).",
       "substrate": [
         "thermodynamic",
         "electronic"
@@ -236,22 +298,28 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "exact-in-limit",
       "realization_type": "statistical",
-      "speed_category": "hours",
-      "speed_notes": "minutes to hours (depends on cooling schedule)",
-      "scale_category": "large",
-      "compute_capacity_notes": "global optimization problems (scales exponentially with problem size)",
-      "energy_per_operation": "~1 fJ (thermal)"
+      "examples": [
+        {
+          "id": "analog-annealing-default",
+          "url": "",
+          "label": "Default Simulated annealing (thermal) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "hours",
+          "scale_category": "large",
+          "energy_per_operation": "~1 fJ (thermal)"
+        }
+      ]
     },
     {
       "id": "slide-rule",
       "name": "Slide rule",
       "realizes": "logarithm, multiplication, division, roots",
-      "description": "Logarithmic scales engraved on sliding rules allow multiplication by physical addition of lengths (log a + log b = log ab). Precision is bounded by engraving quality and human reading resolution \u2014 typically 3 significant figures.",
+      "description": "Logarithmic scales engraved on sliding rules allow multiplication by physical addition of lengths (log a + log b = log ab). Precision is bounded by engraving quality and human reading resolution \u2014 typically 3 significant figures. Speed: seconds (human reading time). Capacity: single arithmetic operation (3 significant figures).",
       "substrate": [
         "mechanical"
       ],
@@ -260,25 +328,31 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "MULTIPLY",
-        "DIVIDE",
-        "LOG",
-        "ROOT"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
-      "speed_category": "seconds",
-      "speed_notes": "seconds (human reading time)",
-      "scale_category": "single-op",
-      "compute_capacity_notes": "single arithmetic operation (3 significant figures)",
-      "energy_per_operation": "~1 J (mechanical)"
+      "examples": [
+        {
+          "id": "slide-rule-default",
+          "url": "",
+          "label": "Default Slide rule implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MULTIPLY",
+            "DIVIDE",
+            "LOG",
+            "ROOT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
+        }
+      ]
     },
     {
       "id": "billiard-ball",
       "name": "Billiard-ball computer",
       "realizes": "reversible boolean logic (Fredkin gate)",
-      "description": "Proposed by Fredkin & Toffoli (1982). Balls travel on paths representing wires; presence/absence of a ball encodes a bit. Collisions at path intersections implement logic gates. Logically and thermodynamically reversible \u2014 no information is destroyed.",
+      "description": "Proposed by Fredkin & Toffoli (1982). Balls travel on paths representing wires; presence/absence of a ball encodes a bit. Collisions at path intersections implement logic gates. Logically and thermodynamically reversible \u2014 no information is destroyed. Speed: nanoseconds to microseconds (ball velocity dependent). Capacity: arbitrary boolean circuits (theoretically universal).",
       "substrate": [
         "mechanical"
       ],
@@ -288,25 +362,31 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT",
-        "FANOUT"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "nanoseconds to microseconds (ball velocity dependent)",
-      "scale_category": "unbounded",
-      "compute_capacity_notes": "arbitrary boolean circuits (theoretically universal)",
-      "energy_per_operation": "~1 pJ (kinetic)"
+      "examples": [
+        {
+          "id": "billiard-ball-default",
+          "url": "",
+          "label": "Default Billiard-ball computer implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "FANOUT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "unbounded",
+          "energy_per_operation": "~1 pJ (kinetic)"
+        }
+      ]
     },
     {
       "id": "moniac",
       "name": "MONIAC (Phillips hydraulic computer)",
       "realizes": "Keynesian macroeconomic equilibrium (ODE system)",
-      "description": "Built by Bill Phillips (1949). Water flows through tanks and pipes representing economic sectors \u2014 income, consumption, taxation, investment. Flow rates encode economic quantities. The system settles into equilibrium representing GDP balance. 14 machines were built.",
+      "description": "Built by Bill Phillips (1949). Water flows through tanks and pipes representing economic sectors \u2014 income, consumption, taxation, investment. Flow rates encode economic quantities. The system settles into equilibrium representing GDP balance. 14 machines were built. Speed: minutes to hours (hydraulic equilibration). Capacity: ~10-20 economic variables (limited by physical plumbing).",
       "substrate": [
         "fluidics"
       ],
@@ -315,41 +395,55 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE",
-        "ADD",
-        "MULTIPLY-by-constant"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
-      "speed_category": "hours",
-      "speed_notes": "minutes to hours (hydraulic equilibration)",
-      "scale_category": "small",
-      "compute_capacity_notes": "~10-20 economic variables (limited by physical plumbing)",
       "examples": [
         {
           "id": "phillips-machine-wiki",
           "url": "https://en.wikipedia.org/wiki/Phillips_Machine",
-          "label": "Phillips Machine Wikipedia"
+          "label": "Phillips Machine Wikipedia",
+          "operations": [
+            "INTEGRATE",
+            "ADD",
+            "MULTIPLY-by-constant"
+          ],
+          "speed_category": "hours",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (hydraulic)"
         },
         {
           "id": "moniac-demonstration",
           "url": "https://www.youtube.com/watch?v=gwf5mAlI7Ug",
-          "label": "MONIAC hydraulic computer demonstration"
+          "label": "MONIAC hydraulic computer demonstration",
+          "operations": [
+            "INTEGRATE",
+            "ADD",
+            "MULTIPLY-by-constant"
+          ],
+          "speed_category": "hours",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (hydraulic)"
         },
         {
           "id": "moniac-overview",
           "url": "https://www.youtube.com/watch?v=89sPO7jqJpU",
-          "label": "roons - MONIAC overview"
+          "label": "roons - MONIAC overview",
+          "operations": [
+            "INTEGRATE",
+            "ADD",
+            "MULTIPLY-by-constant"
+          ],
+          "speed_category": "hours",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (hydraulic)"
         }
-      ],
-      "energy_per_operation": "~1 J (hydraulic)"
+      ]
     },
     {
       "id": "thermodynamic-computer",
       "name": "Thermodynamic computer",
       "realizes": "sampling from Boltzmann distributions",
-      "description": "Uses thermal noise in analog circuits to sample from Boltzmann distributions. Thermal fluctuations provide natural randomness that follows statistical mechanics principles. The Normal Computing SDE (Stochastic Differential Equation) approach leverages this thermal noise for computation.",
+      "description": "Uses thermal noise in analog circuits to sample from Boltzmann distributions. Thermal fluctuations provide natural randomness that follows statistical mechanics principles. The Normal Computing SDE (Stochastic Differential Equation) approach leverages this thermal noise for computation. Speed: microseconds to milliseconds (thermal equilibration). Capacity: probabilistic sampling problems (scales with circuit complexity).",
       "substrate": [
         "electronic",
         "thermodynamic"
@@ -360,22 +454,28 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "SAMPLE"
-      ],
       "exactness": "exact-in-limit",
       "realization_type": "statistical",
-      "speed_category": "seconds",
-      "speed_notes": "microseconds to milliseconds (thermal equilibration)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "probabilistic sampling problems (scales with circuit complexity)",
-      "energy_per_operation": "~1 fJ (thermal)"
+      "examples": [
+        {
+          "id": "thermodynamic-computer-default",
+          "url": "",
+          "label": "Default Thermodynamic computer implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "SAMPLE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 fJ (thermal)"
+        }
+      ]
     },
     {
       "id": "quantum-gate-computer",
       "name": "Quantum gate computer (superconducting qubits)",
       "realizes": "unitary transformations / quantum algorithms",
-      "description": "Superconducting qubits manipulated by microwave pulses to perform unitary operations. Quantum gates like Hadamard, CNOT, and phase gates enable quantum algorithms such as Shor's factoring and Grover's search.",
+      "description": "Superconducting qubits manipulated by microwave pulses to perform unitary operations. Quantum gates like Hadamard, CNOT, and phase gates enable quantum algorithms such as Shor's factoring and Grover's search. Speed: nanoseconds to microseconds (gate operations). Capacity: exponential in qubit count (theoretical universal quantum computation).",
       "substrate": [
         "quantum",
         "electronic"
@@ -386,27 +486,33 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "HADAMARD",
-        "CNOT",
-        "PHASE",
-        "PAULI-X",
-        "PAULI-Y",
-        "PAULI-Z"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "nanoseconds to microseconds (gate operations)",
-      "scale_category": "unbounded",
-      "compute_capacity_notes": "exponential in qubit count (theoretical universal quantum computation)",
-      "energy_per_operation": "~1 aJ (quantum)"
+      "examples": [
+        {
+          "id": "quantum-gate-computer-default",
+          "url": "",
+          "label": "Default Quantum gate computer (superconducting qubits) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "HADAMARD",
+            "CNOT",
+            "PHASE",
+            "PAULI-X",
+            "PAULI-Y",
+            "PAULI-Z"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "unbounded",
+          "energy_per_operation": "~1 aJ (quantum)"
+        }
+      ]
     },
     {
       "id": "quantum-annealer",
       "name": "Quantum annealer (D-Wave style)",
       "realizes": "Ising model energy minimization",
-      "description": "Adiabatic quantum computation using quantum annealing to find ground states of Ising Hamiltonians. D-Wave systems use superconducting flux qubits in a specific connectivity graph to solve optimization problems.",
+      "description": "Adiabatic quantum computation using quantum annealing to find ground states of Ising Hamiltonians. D-Wave systems use superconducting flux qubits in a specific connectivity graph to solve optimization problems. Speed: microseconds (annealing time). Capacity: combinatorial optimization problems (~5000 variables on current hardware).",
       "substrate": [
         "quantum",
         "electronic"
@@ -418,22 +524,28 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "statistical",
-      "speed_category": "seconds",
-      "speed_notes": "microseconds (annealing time)",
-      "scale_category": "large",
-      "compute_capacity_notes": "combinatorial optimization problems (~5000 variables on current hardware)",
-      "energy_per_operation": "~1 aJ (quantum)"
+      "examples": [
+        {
+          "id": "quantum-annealer-default",
+          "url": "",
+          "label": "Default Quantum annealer (D-Wave style) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "~1 aJ (quantum)"
+        }
+      ]
     },
     {
       "id": "neuromorphic-chip",
       "name": "Neuromorphic chip (Intel Loihi / IBM TrueNorth)",
       "realizes": "spiking neural network computation",
-      "description": "Silicon chips that mimic neural computation using spiking neurons and synaptic connections. Intel Loihi and IBM TrueNorth implement event-driven, asynchronous processing with on-chip learning capabilities.",
+      "description": "Silicon chips that mimic neural computation using spiking neurons and synaptic connections. Intel Loihi and IBM TrueNorth implement event-driven, asynchronous processing with on-chip learning capabilities. Speed: microseconds (spike propagation). Capacity: millions of neurons (parallel event-driven processing).",
       "substrate": [
         "electronic"
       ],
@@ -443,24 +555,30 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE-AND-FIRE",
-        "WEIGHTED-SUM",
-        "THRESHOLD"
-      ],
       "exactness": "approximate",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "microseconds (spike propagation)",
-      "scale_category": "large",
-      "compute_capacity_notes": "millions of neurons (parallel event-driven processing)",
-      "energy_per_operation": "~1 pJ (CMOS)"
+      "examples": [
+        {
+          "id": "neuromorphic-chip-default",
+          "url": "",
+          "label": "Default Neuromorphic chip (Intel Loihi / IBM TrueNorth) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "INTEGRATE-AND-FIRE",
+            "WEIGHTED-SUM",
+            "THRESHOLD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "~1 pJ (CMOS)"
+        }
+      ]
     },
     {
       "id": "memristor-crossbar",
       "name": "Memristor crossbar",
       "realizes": "analog matrix-vector multiplication",
-      "description": "Crossbar arrays of memristors (memory resistors) perform matrix-vector operations in analog. Voltages applied to rows, currents collected from columns. Resistance values encode matrix elements. Enables in-memory computing for neural network inference.",
+      "description": "Crossbar arrays of memristors (memory resistors) perform matrix-vector operations in analog. Voltages applied to rows, currents collected from columns. Resistance values encode matrix elements. Enables in-memory computing for neural network inference. Speed: nanoseconds (electrical propagation). Capacity: large matrix operations (scales with crossbar size).",
       "substrate": [
         "electronic"
       ],
@@ -469,23 +587,29 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "MULTIPLY",
-        "ADD"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
-      "speed_category": "seconds",
-      "speed_notes": "nanoseconds (electrical propagation)",
-      "scale_category": "large",
-      "compute_capacity_notes": "large matrix operations (scales with crossbar size)",
-      "energy_per_operation": "~1 fJ (analog)"
+      "examples": [
+        {
+          "id": "memristor-crossbar-default",
+          "url": "",
+          "label": "Default Memristor crossbar implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "~1 fJ (analog)"
+        }
+      ]
     },
     {
       "id": "dna-computer",
       "name": "DNA computer (Adleman 1994)",
       "realizes": "Hamiltonian path via strand hybridization",
-      "description": "Leonard Adleman's 1994 demonstration solved the directed Hamiltonian path problem using DNA strand hybridization. Cities encoded as DNA sequences, flight connections as complementary strands. Massively parallel biochemical search.",
+      "description": "Leonard Adleman's 1994 demonstration solved the directed Hamiltonian path problem using DNA strand hybridization. Cities encoded as DNA sequences, flight connections as complementary strands. Massively parallel biochemical search. Speed: hours to days (biochemical reactions). Capacity: combinatorial search problems (limited by DNA synthesis/sequencing).",
       "substrate": [
         "biological"
       ],
@@ -495,23 +619,29 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "SEARCH",
-        "SELECT"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "days",
-      "speed_notes": "hours to days (biochemical reactions)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "combinatorial search problems (limited by DNA synthesis/sequencing)",
-      "energy_per_operation": "~1 aJ (molecular)"
+      "examples": [
+        {
+          "id": "dna-computer-default",
+          "url": "",
+          "label": "Default DNA computer (Adleman 1994) implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "SEARCH",
+            "SELECT"
+          ],
+          "speed_category": "days",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 aJ (molecular)"
+        }
+      ]
     },
     {
       "id": "reservoir-computer",
       "name": "Reservoir computer",
       "realizes": "temporal pattern recognition / dynamical system computation",
-      "description": "Fixed nonlinear dynamical system (reservoir) coupled to a trained linear readout layer. Input drives the reservoir dynamics, output layer learns to extract desired computations. Echo state networks and liquid state machines are implementations.",
+      "description": "Fixed nonlinear dynamical system (reservoir) coupled to a trained linear readout layer. Input drives the reservoir dynamics, output layer learns to extract desired computations. Echo state networks and liquid state machines are implementations. Speed: depends on reservoir substrate (microseconds to seconds). Capacity: temporal sequence processing (scales with reservoir size).",
       "substrate": [
         "electronic",
         "mechanical",
@@ -522,24 +652,30 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE",
-        "NONLINEAR-TRANSFORM",
-        "MEMORY"
-      ],
       "exactness": "approximate",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "depends on reservoir substrate (microseconds to seconds)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "temporal sequence processing (scales with reservoir size)",
-      "energy_per_operation": "~1 fJ (substrate dependent)"
+      "examples": [
+        {
+          "id": "reservoir-computer-default",
+          "url": "",
+          "label": "Default Reservoir computer implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "INTEGRATE",
+            "NONLINEAR-TRANSFORM",
+            "MEMORY"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 fJ (substrate dependent)"
+        }
+      ]
     },
     {
       "id": "opamp-analog-computer",
       "name": "Op-amp analog computer",
       "realizes": "ODE integration via Kirchhoff's laws",
-      "description": "Operational amplifiers configured as integrators, adders, and multipliers solve differential equations in real-time. Voltages represent variables, circuit topology encodes the equation structure. Classical electronic analog computation.",
+      "description": "Operational amplifiers configured as integrators, adders, and multipliers solve differential equations in real-time. Voltages represent variables, circuit topology encodes the equation structure. Classical electronic analog computation. Speed: real-time (microseconds to seconds). Capacity: systems of ODEs (~10-100 variables typical).",
       "substrate": [
         "electronic"
       ],
@@ -548,25 +684,31 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE",
-        "ADD",
-        "MULTIPLY",
-        "DIFFERENTIATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
-      "speed_category": "seconds",
-      "speed_notes": "real-time (microseconds to seconds)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "systems of ODEs (~10-100 variables typical)",
-      "energy_per_operation": "~1 nJ (analog electronic)"
+      "examples": [
+        {
+          "id": "opamp-analog-computer-default",
+          "url": "",
+          "label": "Default Op-amp analog computer implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "INTEGRATE",
+            "ADD",
+            "MULTIPLY",
+            "DIFFERENTIATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 nJ (analog electronic)"
+        }
+      ]
     },
     {
       "id": "fluidic-adder",
       "name": "Water (fluidic) computer",
       "realizes": "binary addition / boolean logic (AND, XOR)",
-      "description": "Water levels in vessels encode binary digits; a siphon and slow drain combine to implement AND and XOR in a single cup-and-tube unit. A filled cup is a 1, an empty cup a 0. When two cups feed one container the siphon trips (AND = carry), while the remainder leaks out the XOR drain. These half-adder cells chain into a multi-bit ripple adder. No moving parts beyond the water itself.",
+      "description": "Water levels in vessels encode binary digits; a siphon and slow drain combine to implement AND and XOR in a single cup-and-tube unit. A filled cup is a 1, an empty cup a 0. When two cups feed one container the siphon trips (AND = carry), while the remainder leaks out the XOR drain. These half-adder cells chain into a multi-bit ripple adder. No moving parts beyond the water itself. Speed: seconds to minutes per bit (gravity-driven flow). Capacity: 4-bit addition demonstrated; theoretically scalable.",
       "substrate": [
         "fluidics"
       ],
@@ -575,30 +717,36 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "ADD",
-        "AND",
-        "XOR"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "minutes",
-      "speed_notes": "seconds to minutes per bit (gravity-driven flow)",
-      "scale_category": "small",
-      "compute_capacity_notes": "4-bit addition demonstrated; theoretically scalable",
-      "energy_per_operation": "~1 mJ (gravitational)",
       "examples": [
         {
           "id": "water-computer-demo",
           "url": "https://www.youtube.com/watch?v=IxXaizglscw",
           "label": "I Made A Water Computer And It Actually Works",
-          "description": "Build and demonstration of a fluidic binary adder using cups, tubes and siphons to implement AND and XOR gates in water"
+          "description": "Build and demonstration of a fluidic binary adder using cups, tubes and siphons to implement AND and XOR gates in water",
+          "operations": [
+            "ADD",
+            "AND",
+            "XOR"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "small",
+          "energy_per_operation": "~1 mJ (gravitational)"
         },
         {
           "id": "water-computer-hackaday",
           "url": "https://hackaday.com/2021/04/26/logic-flows-literally-in-this-water-adder/",
           "label": "Hackaday \u2014 Logic Flows, Literally, In This Water Adder",
-          "description": "Technical write-up explaining the siphon-based AND/XOR mechanism and how the cells chain into a multi-bit adder"
+          "description": "Technical write-up explaining the siphon-based AND/XOR mechanism and how the cells chain into a multi-bit adder",
+          "operations": [
+            "ADD",
+            "AND",
+            "XOR"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "small",
+          "energy_per_operation": "~1 mJ (gravitational)"
         }
       ]
     },
@@ -606,7 +754,7 @@
       "id": "lego-rod-logic",
       "name": "LEGO mechanical computer",
       "realizes": "arbitrary digital logic / sequential game state",
-      "description": "A fully mechanical computer built from LEGO Technic with no electronics. Binary memory is stored as lever positions on a rotating drum (rod logic); a read/write head flips levers to write bits and senses them pneumatically on readback. A joystick translates direction inputs into pneumatic signals that pass through a mechanical filter preventing illegal moves, then drive a 16\u00d716 push-rod display. Demonstrated running the game Snake entirely in hardware.",
+      "description": "A fully mechanical computer built from LEGO Technic with no electronics. Binary memory is stored as lever positions on a rotating drum (rod logic); a read/write head flips levers to write bits and senses them pneumatically on readback. A joystick translates direction inputs into pneumatic signals that pass through a mechanical filter preventing illegal moves, then drive a 16\u00d716 push-rod display. Demonstrated running the game Snake entirely in hardware. Speed: ~1 Hz game-tick (limited by pneumatic signal propagation through tubing). Capacity: 16\u00d716 display state + snake tail buffer (tens of bits of working memory).",
       "substrate": [
         "mechanical"
       ],
@@ -615,32 +763,40 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT",
-        "STORE",
-        "READ"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
-      "speed_category": "seconds",
-      "speed_notes": "~1 Hz game-tick (limited by pneumatic signal propagation through tubing)",
-      "scale_category": "small",
-      "compute_capacity_notes": "16\u00d716 display state + snake tail buffer (tens of bits of working memory)",
-      "energy_per_operation": "~1 J (pneumatic)",
       "examples": [
         {
           "id": "lego-snake-v2",
           "url": "https://www.youtube.com/watch?v=Ux_brSrV9-g",
           "label": "LEGO Computer Snake Game V2",
-          "description": "Full demonstration of the LEGO mechanical computer playing Snake, with explanation of the rod-logic memory drum, joystick input filtering, and push-rod pixel display"
+          "description": "Full demonstration of the LEGO mechanical computer playing Snake, with explanation of the rod-logic memory drum, joystick input filtering, and push-rod pixel display",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "STORE",
+            "READ"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (pneumatic)"
         },
         {
           "id": "lego-snake-hackaday",
           "url": "https://hackaday.com/2024/08/23/a-game-of-snake-on-a-lego-mechanical-computer/",
           "label": "Hackaday \u2014 A Game Of Snake On A LEGO Mechanical Computer",
-          "description": "Technical breakdown of the three subsystems: joystick/filter, tail buffer memory drum, and 16\u00d716 display writer"
+          "description": "Technical breakdown of the three subsystems: joystick/filter, tail buffer memory drum, and 16\u00d716 display writer",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "STORE",
+            "READ"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 J (pneumatic)"
         }
       ]
     },
@@ -648,7 +804,7 @@
       "id": "fire-control-computer",
       "name": "Mechanical fire-control computer",
       "realizes": "ballistic trajectory / gun bearing and elevation (multivariate real-time ODE)",
-      "description": "Electromechanical analog computers installed on WWII-era warships (e.g. the US Navy Mark 1) continuously computed the correct bearing and elevation for naval guns from up to 25 live inputs: target range, target bearing, own-ship speed and course, wind speed, shell muzzle velocity, and more. Seven classes of mechanism \u2014 shafts, gears, cams, differentials, component solvers, integrators, and multipliers \u2014 were combined to solve the fire-control problem in real time.",
+      "description": "Electromechanical analog computers installed on WWII-era warships (e.g. the US Navy Mark 1) continuously computed the correct bearing and elevation for naval guns from up to 25 live inputs: target range, target bearing, own-ship speed and course, wind speed, shell muzzle velocity, and more. Seven classes of mechanism \u2014 shafts, gears, cams, differentials, component solvers, integrators, and multipliers \u2014 were combined to solve the fire-control problem in real time. Speed: continuous real-time (output updated as fast as inputs change). Capacity: ~25 input variables \u2192 2 output variables (bearing, elevation).",
       "substrate": [
         "mechanical",
         "electronic"
@@ -658,31 +814,38 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE",
-        "MULTIPLY",
-        "ADD",
-        "COMPOSE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
-      "speed_category": "instantaneous",
-      "speed_notes": "continuous real-time (output updated as fast as inputs change)",
-      "scale_category": "medium",
-      "compute_capacity_notes": "~25 input variables \u2192 2 output variables (bearing, elevation)",
-      "energy_per_operation": "~10 J (electromechanical)",
       "examples": [
         {
           "id": "fire-control-mechanisms",
           "url": "https://www.youtube.com/watch?v=s1i-dnAH9Y4",
           "label": "Mechanical Computer (All Parts) \u2014 Basic Mechanisms In Fire Control Computers (1953)",
-          "description": "US Navy training film explaining all seven mechanical computing elements: shafts, gears, cams, differentials, component solvers, integrators, and multipliers"
+          "description": "US Navy training film explaining all seven mechanical computing elements: shafts, gears, cams, differentials, component solvers, integrators, and multipliers",
+          "operations": [
+            "INTEGRATE",
+            "MULTIPLY",
+            "ADD",
+            "COMPOSE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~10 J (electromechanical)"
         },
         {
           "id": "fire-control-hackaday",
           "url": "https://hackaday.com/2014/10/28/retrotechtacular-fire-control-computers-in-navy-ships/",
           "label": "Hackaday \u2014 Retrotechtacular: Fire Control Computers In Navy Ships",
-          "description": "Overview of the Mark 1 fire-control computer and how its subsystems solved the ballistic equations continuously"
+          "description": "Overview of the Mark 1 fire-control computer and how its subsystems solved the ballistic equations continuously",
+          "operations": [
+            "INTEGRATE",
+            "MULTIPLY",
+            "ADD",
+            "COMPOSE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~10 J (electromechanical)"
         }
       ]
     },
@@ -690,7 +853,7 @@
       "id": "antikythera",
       "name": "Antikythera mechanism",
       "realizes": "astronomical positions, eclipse prediction, Metonic calendar (multi-cycle gear ratios)",
-      "description": "A hand-cranked bronze gearwork device built around 150\u2013100 BC \u2014 the oldest known analog computer. Turning a single input crank advances 37 meshing gears whose tooth-count ratios encode the periods of the Sun, Moon, and planets. A differential gear (rediscovered in the 16th century) models the Moon's elliptical speed variation. Front dials show the zodiac position of Sun and Moon and display lunar phase via a half-silvered sphere; rear spiral dials track the 19-year Metonic cycle (235 lunations), the 18-year Saros eclipse cycle, and the 4-year Olympiad. Setting a date predicts eclipses and planetary positions decades ahead.",
+      "description": "A hand-cranked bronze gearwork device built around 150\u2013100 BC \u2014 the oldest known analog computer. Turning a single input crank advances 37 meshing gears whose tooth-count ratios encode the periods of the Sun, Moon, and planets. A differential gear (rediscovered in the 16th century) models the Moon's elliptical speed variation. Front dials show the zodiac position of Sun and Moon and display lunar phase via a half-silvered sphere; rear spiral dials track the 19-year Metonic cycle (235 lunations), the 18-year Saros eclipse cycle, and the 4-year Olympiad. Setting a date predicts eclipses and planetary positions decades ahead. Speed: instantaneous (gears turn as fast as the crank). Capacity: ~10 astronomical cycles simultaneously; eclipse prediction decades in advance.",
       "substrate": [
         "mechanical"
       ],
@@ -699,37 +862,43 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "MULTIPLY-by-constant",
-        "ADD",
-        "MOD"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Antikythera_mechanism",
           "label": "Antikythera mechanism \u2014 Wikipedia",
-          "id": "antikythera-example-1"
+          "id": "antikythera-example-1",
+          "operations": [
+            "MULTIPLY-by-constant",
+            "ADD",
+            "MOD"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://www.nature.com/articles/s41598-021-84310-w",
           "label": "A Model of the Cosmos in the ancient Greek Antikythera Mechanism (Nature, 2021)",
           "description": "Peer-reviewed reconstruction of the full gear train including the planetary display on the front plate",
-          "id": "antikythera-example-2"
+          "id": "antikythera-example-2",
+          "operations": [
+            "MULTIPLY-by-constant",
+            "ADD",
+            "MOD"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "instantaneous (gears turn as fast as the crank)",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "~10 astronomical cycles simultaneously; eclipse prediction decades in advance",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "liquid-marble",
       "name": "Liquid marble computer",
       "realizes": "boolean logic / reversible gates (AND, XOR, OR, NOT, Toffoli, Fredkin)",
-      "description": "Liquid marbles are millimetre-scale droplets coated with hydrophobic powder that makes them roll freely without wetting surfaces. Computation is collision-based: two marbles directed at an intersection merge if their relative speed exceeds ~0.29 m/s (AND = 1, carry output) and rebound below that threshold (AND = 0, separate outputs). The three output trajectories encode AND and XOR simultaneously, forming a half-adder in a single interaction gate. By controlling routing channels and gate geometry, all classical gates (AND, OR, NOT, NAND, NOR, XOR) and the reversible Toffoli and Fredkin gates can be constructed. The Fredkin gate conserves marble count \u2014 no information is destroyed \u2014 making this a physical substrate for reversible and potentially thermodynamically efficient computing.",
+      "description": "Liquid marbles are millimetre-scale droplets coated with hydrophobic powder that makes them roll freely without wetting surfaces. Computation is collision-based: two marbles directed at an intersection merge if their relative speed exceeds ~0.29 m/s (AND = 1, carry output) and rebound below that threshold (AND = 0, separate outputs). The three output trajectories encode AND and XOR simultaneously, forming a half-adder in a single interaction gate. By controlling routing channels and gate geometry, all classical gates (AND, OR, NOT, NAND, NOR, XOR) and the reversible Toffoli and Fredkin gates can be constructed. The Fredkin gate conserves marble count \u2014 no information is destroyed \u2014 making this a physical substrate for reversible and potentially thermodynamically efficient computing. Speed: ~0.1\u20131 s per gate (marble travel time at cm/s speeds). Capacity: gate-level; multi-cycle datapath demonstrated in simulation.",
       "substrate": [
         "fluidics"
       ],
@@ -738,13 +907,6 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT",
-        "XOR",
-        "FANOUT"
-      ],
       "exactness": "approximate",
       "realization_type": "procedural",
       "examples": [
@@ -752,26 +914,41 @@
           "url": "https://arxiv.org/abs/2405.17180",
           "label": "Boolean Gates Based on Liquid Marbles (arXiv 2405.17180, 2024)",
           "description": "Formal derivation of all classical and reversible gates (Toffoli, Fredkin) from liquid marble collision interactions",
-          "id": "liquid-marble-example-1"
+          "id": "liquid-marble-example-1",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "XOR",
+            "FANOUT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 mJ (fluidic)"
         },
         {
           "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0309066",
           "label": "Implementing a multi-cycle datapath with Liquid Marbles (PLOS One, 2024)",
           "description": "Simulation of a complete multi-cycle CPU datapath built from liquid marble interaction gates",
-          "id": "liquid-marble-example-2"
+          "id": "liquid-marble-example-2",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "XOR",
+            "FANOUT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 mJ (fluidic)"
         }
-      ],
-      "speed_notes": "~0.1\u20131 s per gate (marble travel time at cm/s speeds)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "gate-level; multi-cycle datapath demonstrated in simulation",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 mJ (fluidic)"
+      ]
     },
     {
       "id": "rubber-band-steiner",
       "name": "Rubber-band Steiner tree",
       "realizes": "Euclidean Steiner minimum tree (approximate)",
-      "description": "Elastic bands stretched between pins hammered into a board relax under tension to a state of minimum total length. Because each band pulls with a force proportional to its extension, the equilibrium configuration satisfies the equal-angles condition at every interior junction \u2014 the defining property of a Steiner tree. The result is the shortest network connecting all pins, approximating the solution to the NP-hard Euclidean Steiner tree problem. The mechanism is combinatorially distinct from the soap-film Steiner tree (Plateau's problem in 2-D) because the topology of junctions is fixed by the discrete wiring of the bands, not by a continuous surface.",
+      "description": "Elastic bands stretched between pins hammered into a board relax under tension to a state of minimum total length. Because each band pulls with a force proportional to its extension, the equilibrium configuration satisfies the equal-angles condition at every interior junction \u2014 the defining property of a Steiner tree. The result is the shortest network connecting all pins, approximating the solution to the NP-hard Euclidean Steiner tree problem. The mechanism is combinatorially distinct from the soap-film Steiner tree (Plateau's problem in 2-D) because the topology of junctions is fixed by the discrete wiring of the bands, not by a continuous surface. Speed: instantaneous (elastic equilibration). Capacity: Steiner tree for ~5-20 pins (limited by physical layout).",
       "substrate": [
         "mechanical"
       ],
@@ -780,22 +957,28 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "variational",
-      "speed_notes": "instantaneous (elastic equilibration)",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "Steiner tree for ~5-20 pins (limited by physical layout)",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 J (mechanical)"
+      "examples": [
+        {
+          "id": "rubber-band-steiner-default",
+          "url": "",
+          "label": "Default Rubber-band Steiner tree implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
+        }
+      ]
     },
     {
       "id": "kuramoto-oscillators",
       "name": "Coupled oscillator network (Kuramoto / XY model)",
       "realizes": "MAX-CUT / graph partitioning (approximate)",
-      "description": "A network of identical oscillators \u2014 pendula, LC circuits, or CMOS ring oscillators \u2014 coupled to their neighbours by springs or resistive links. The Kuramoto model describes how each oscillator's phase evolves under the pull of its neighbours. When the coupling weights encode a graph's edge weights, the system's stable phase configuration minimizes the same energy function as MAX-CUT: oscillators partition into two phase-locked clusters (0\u00b0 and 180\u00b0) that approximately bisect the graph. Implemented in silicon as oscillator-based Ising machines with up to 1440 CMOS nodes; reported within 99% of optimal MAX-CUT on tested benchmarks.",
+      "description": "A network of identical oscillators \u2014 pendula, LC circuits, or CMOS ring oscillators \u2014 coupled to their neighbours by springs or resistive links. The Kuramoto model describes how each oscillator's phase evolves under the pull of its neighbours. When the coupling weights encode a graph's edge weights, the system's stable phase configuration minimizes the same energy function as MAX-CUT: oscillators partition into two phase-locked clusters (0\u00b0 and 180\u00b0) that approximately bisect the graph. Implemented in silicon as oscillator-based Ising machines with up to 1440 CMOS nodes; reported within 99% of optimal MAX-CUT on tested benchmarks. Speed: microseconds to milliseconds (oscillator ring-down time). Capacity: graph problems with hundreds to thousands of nodes.",
       "substrate": [
         "mechanical",
         "electronic"
@@ -805,9 +988,6 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "variational",
       "examples": [
@@ -815,26 +995,33 @@
           "url": "https://arxiv.org/abs/2102.04931",
           "label": "Max-Cut via Kuramoto-type Oscillators (arXiv 2102.04931)",
           "description": "Theoretical analysis showing phase-synchronized Kuramoto networks achieve 0.878-approximation of MAX-CUT, matching the Goemans-Williamson SDP bound",
-          "id": "kuramoto-oscillators-example-1"
+          "id": "kuramoto-oscillators-example-1",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://www.nature.com/articles/s44172-024-00261-w",
           "label": "An integrated coupled oscillator network to solve optimization problems (Nature Comm. Eng., 2024)",
           "description": "1440-node silicon coupled oscillator chip benchmarked on Ising and MAX-CUT problems",
-          "id": "kuramoto-oscillators-example-2"
+          "id": "kuramoto-oscillators-example-2",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "microseconds to milliseconds (oscillator ring-down time)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "graph problems with hundreds to thousands of nodes",
-      "scale_category": "large",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "coherent-ising-machine",
       "name": "Coherent Ising machine (OPO network)",
       "realizes": "Ising Hamiltonian ground state / combinatorial optimization (MAX-CUT, QUBO)",
-      "description": "A network of degenerate optical parametric oscillator (DOPO) pulses circulating in a fiber ring cavity. Each pulse can oscillate in one of two phase states (0 or \u03c0), encoding a spin. Measurement-feedback electronics couple the pulses according to the Ising coupling matrix programmed by the user. As the pump power increases past threshold, the network undergoes bifurcation and settles into a low-energy spin configuration. NTT's 2021 system used 100,000 DOPO pulses in a 5-km fiber loop. Unlike classical or quantum annealers, the CIM operates at room temperature and exploits optical coherence rather than thermal or quantum fluctuations.",
+      "description": "A network of degenerate optical parametric oscillator (DOPO) pulses circulating in a fiber ring cavity. Each pulse can oscillate in one of two phase states (0 or \u03c0), encoding a spin. Measurement-feedback electronics couple the pulses according to the Ising coupling matrix programmed by the user. As the pump power increases past threshold, the network undergoes bifurcation and settles into a low-energy spin configuration. NTT's 2021 system used 100,000 DOPO pulses in a 5-km fiber loop. Unlike classical or quantum annealers, the CIM operates at room temperature and exploits optical coherence rather than thermal or quantum fluctuations. Speed: microseconds per Ising problem instance. Capacity: up to 100,000 spins (NTT 2021); competitive with quantum annealers on dense graphs.",
       "substrate": [
         "optical",
         "electronic"
@@ -844,9 +1031,6 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "variational",
       "examples": [
@@ -854,26 +1038,33 @@
           "url": "https://group.ntt/en/newsrelease/2021/09/30/210930a.html",
           "label": "NTT \u2014 100,000-spin coherent Ising machine (2021)",
           "description": "Announcement of the 100,000-DOPO coherent Ising machine demonstrating large-scale combinatorial optimization at room temperature",
-          "id": "coherent-ising-machine-example-1"
+          "id": "coherent-ising-machine-example-1",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 nJ (electronic)"
         },
         {
           "url": "https://www.nature.com/articles/s41377-022-01013-1",
           "label": "Large-scale coherent Ising machine based on optoelectronic parametric oscillator (Light: Sci. & Apps., 2022)",
           "description": "Detailed architecture and benchmarking of an optoelectronic CIM against D-Wave and classical solvers",
-          "id": "coherent-ising-machine-example-2"
+          "id": "coherent-ising-machine-example-2",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 nJ (electronic)"
         }
-      ],
-      "speed_notes": "microseconds per Ising problem instance",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "up to 100,000 spins (NTT 2021); competitive with quantum annealers on dense graphs",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 nJ (electronic)"
+      ]
     },
     {
       "id": "dna-strand-displacement",
       "name": "DNA strand-displacement computer",
       "realizes": "boolean logic / neural network inference (via hybridization cascades)",
-      "description": "Single-stranded DNA molecules in solution compute via toehold-mediated strand displacement: a short single-stranded 'toehold' on a partially double-stranded gate complex allows an input strand to invade, displace, and release an output strand. Presence/absence of a strand encodes a bit. Cascades of these reactions implement AND, OR, NOT, NAND, NOR, XOR, and threshold gates without enzymes or moving parts. Qian and Winfree (2011) demonstrated a four-bit square-root circuit from 130 DNA strands; a subsequent paper (Nature, 2011) realized a 30-node Hopfield neural network entirely in DNA solution.",
+      "description": "Single-stranded DNA molecules in solution compute via toehold-mediated strand displacement: a short single-stranded 'toehold' on a partially double-stranded gate complex allows an input strand to invade, displace, and release an output strand. Presence/absence of a strand encodes a bit. Cascades of these reactions implement AND, OR, NOT, NAND, NOR, XOR, and threshold gates without enzymes or moving parts. Qian and Winfree (2011) demonstrated a four-bit square-root circuit from 130 DNA strands; a subsequent paper (Nature, 2011) realized a 30-node Hopfield neural network entirely in DNA solution. Speed: minutes to hours per logic operation (hybridization kinetics). Capacity: ~100-gate circuits demonstrated; massively parallel (each molecule is a gate).",
       "substrate": [
         "biological",
         "chemical"
@@ -883,12 +1074,6 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT",
-        "THRESHOLD"
-      ],
       "exactness": "approximate",
       "realization_type": "procedural",
       "examples": [
@@ -896,26 +1081,39 @@
           "url": "https://www.science.org/doi/10.1126/science.1200520",
           "label": "Scaling Up Digital Circuit Computation with DNA Strand Displacement Cascades (Science, 2011)",
           "description": "Qian & Winfree demonstrate a 4-bit square-root circuit built from 130 DNA strands using seesaw gate architecture",
-          "id": "dna-strand-displacement-example-1"
+          "id": "dna-strand-displacement-example-1",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "THRESHOLD"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
         },
         {
           "url": "https://www.nature.com/articles/nature10262",
           "label": "Neural network computation with DNA strand displacement cascades (Nature, 2011)",
           "description": "30-neuron Hopfield neural network implemented entirely in DNA solution, capable of pattern completion",
-          "id": "dna-strand-displacement-example-2"
+          "id": "dna-strand-displacement-example-2",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT",
+            "THRESHOLD"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
         }
-      ],
-      "speed_notes": "minutes to hours per logic operation (hybridization kinetics)",
-      "speed_category": "minutes",
-      "compute_capacity_notes": "~100-gate circuits demonstrated; massively parallel (each molecule is a gate)",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 \u03bcJ (biological)"
+      ]
     },
     {
       "id": "d2nn",
       "name": "Diffractive deep neural network (D\u00b2NN)",
       "realizes": "neural network inference / image classification (at the speed of light)",
-      "description": "A stack of passive, 3D-printed diffraction layers implements a trained neural network entirely in the optical domain. Each layer is a mask with pixel-wise phase or amplitude modulation, trained offline with backpropagation through a differentiable wave-optics model. During inference, light propagates through the layers via diffraction \u2014 no active computation occurs. The network function is encoded in the geometry of the passive masks. Lin et al. (2018, Science) demonstrated handwritten-digit classification at terahertz frequencies with 91.75% accuracy. Inference runs at the speed of light with zero dynamic energy consumption beyond the input illumination.",
+      "description": "A stack of passive, 3D-printed diffraction layers implements a trained neural network entirely in the optical domain. Each layer is a mask with pixel-wise phase or amplitude modulation, trained offline with backpropagation through a differentiable wave-optics model. During inference, light propagates through the layers via diffraction \u2014 no active computation occurs. The network function is encoded in the geometry of the passive masks. Lin et al. (2018, Science) demonstrated handwritten-digit classification at terahertz frequencies with 91.75% accuracy. Inference runs at the speed of light with zero dynamic energy consumption beyond the input illumination. Speed: picoseconds (optical propagation through ~cm of layers). Capacity: image classification at THz; scales with aperture area and layer count.",
       "substrate": [
         "optical"
       ],
@@ -924,11 +1122,6 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "MULTIPLY",
-        "ADD",
-        "COMPOSE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
@@ -936,20 +1129,23 @@
           "url": "https://www.science.org/doi/10.1126/science.aat8084",
           "label": "All-optical machine learning using diffractive deep neural networks (Science, 2018)",
           "description": "Lin et al. introduce D\u00b2NN: five 3D-printed passive diffraction layers classify MNIST digits at 91.75% accuracy with zero active power",
-          "id": "d2nn-example-1"
+          "id": "d2nn-example-1",
+          "operations": [
+            "MULTIPLY",
+            "ADD",
+            "COMPOSE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 pJ (optical)"
         }
-      ],
-      "speed_notes": "picoseconds (optical propagation through ~cm of layers)",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "image classification at THz; scales with aperture area and layer count",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 pJ (optical)"
+      ]
     },
     {
       "id": "bz-reaction",
       "name": "Belousov-Zhabotinsky (BZ) reaction computer",
       "realizes": "boolean logic / reaction-diffusion computation (via chemical wave collisions)",
-      "description": "The BZ reaction is an oscillating chemical system that produces propagating excitation waves in a thin layer of reagent (typically ferroin or ruthenium catalyst in acidified bromate/malonate). Signals are encoded as wave fronts; the interaction of two colliding wave fragments implements logic at the collision site. Annihilation corresponds to AND; a wave passing through unimpeded corresponds to OR. Adamatzky demonstrated NOT, OR, AND gates in fixed channel geometries. A light-sensitive variant (with ruthenium catalyst) allows gates to be programmed by illumination patterns. A 2024 Nature Communications paper demonstrated a hybrid digital-chemical programmable array.",
+      "description": "The BZ reaction is an oscillating chemical system that produces propagating excitation waves in a thin layer of reagent (typically ferroin or ruthenium catalyst in acidified bromate/malonate). Signals are encoded as wave fronts; the interaction of two colliding wave fragments implements logic at the collision site. Annihilation corresponds to AND; a wave passing through unimpeded corresponds to OR. Adamatzky demonstrated NOT, OR, AND gates in fixed channel geometries. A light-sensitive variant (with ruthenium catalyst) allows gates to be programmed by illumination patterns. A 2024 Nature Communications paper demonstrated a hybrid digital-chemical programmable array. Speed: ~1-10 mm/min wave propagation; seconds to minutes per gate. Capacity: small logic circuits; limited by wave-front geometry and reagent lifetime.",
       "substrate": [
         "chemical"
       ],
@@ -958,37 +1154,43 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT"
-      ],
       "exactness": "approximate",
       "realization_type": "procedural",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Belousov%E2%80%93Zhabotinsky_reaction",
           "label": "Belousov\u2013Zhabotinsky reaction \u2014 Wikipedia",
-          "id": "bz-reaction-example-1"
+          "id": "bz-reaction-example-1",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 \u03bcJ (chemical)"
         },
         {
           "url": "https://www.nature.com/articles/s41467-024-45896-7",
           "label": "A programmable hybrid digital-chemical information processor based on the BZ reaction (Nature Comms., 2024)",
           "description": "Programmable multi-cell BZ array with digital error correction, implementing chemical oscillator computation",
-          "id": "bz-reaction-example-2"
+          "id": "bz-reaction-example-2",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 \u03bcJ (chemical)"
         }
-      ],
-      "speed_notes": "~1-10 mm/min wave propagation; seconds to minutes per gate",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "small logic circuits; limited by wave-front geometry and reagent lifetime",
-      "scale_category": "small",
-      "energy_per_operation": "~1 \u03bcJ (chemical)"
+      ]
     },
     {
       "id": "boson-sampler",
       "name": "Boson sampler",
       "realizes": "sampling from the permanent of a unitary matrix (classically #P-hard)",
-      "description": "Identical single photons enter an m-mode linear optical network (beam splitters and phase shifters implementing a unitary U). Detectors at the outputs sample from a distribution whose probabilities are proportional to |Perm(U_S)|\u00b2 \u2014 the squared permanent of submatrices of U \u2014 a quantity believed to be classically intractable to compute. Aaronson & Arkhipov (2011) proved that an efficient classical simulation would collapse the polynomial hierarchy. The device does not solve a user-defined optimization problem; rather, it demonstrates quantum advantage on a specific sampling task. Gaussian boson sampling (GBS) variants use squeezed-light inputs and have been demonstrated at scale (Jiuzhang, 2020).",
+      "description": "Identical single photons enter an m-mode linear optical network (beam splitters and phase shifters implementing a unitary U). Detectors at the outputs sample from a distribution whose probabilities are proportional to |Perm(U_S)|\u00b2 \u2014 the squared permanent of submatrices of U \u2014 a quantity believed to be classically intractable to compute. Aaronson & Arkhipov (2011) proved that an efficient classical simulation would collapse the polynomial hierarchy. The device does not solve a user-defined optimization problem; rather, it demonstrates quantum advantage on a specific sampling task. Gaussian boson sampling (GBS) variants use squeezed-light inputs and have been demonstrated at scale (Jiuzhang, 2020). Speed: nanoseconds per sample (photon transit time through chip). Capacity: 53+ photons demonstrated (Jiuzhang); quantum advantage claimed for n\u226550.",
       "substrate": [
         "optical",
         "quantum"
@@ -998,9 +1200,6 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "SAMPLE"
-      ],
       "exactness": "exact",
       "realization_type": "statistical",
       "examples": [
@@ -1008,25 +1207,32 @@
           "url": "https://arxiv.org/abs/1011.3245",
           "label": "The Computational Complexity of Linear Optics \u2014 Aaronson & Arkhipov (2011)",
           "description": "Original proof that efficient classical simulation of boson sampling would collapse the polynomial hierarchy",
-          "id": "boson-sampler-example-1"
+          "id": "boson-sampler-example-1",
+          "operations": [
+            "SAMPLE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 pJ (optical)"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Boson_sampling",
           "label": "Boson sampling \u2014 Wikipedia",
-          "id": "boson-sampler-example-2"
+          "id": "boson-sampler-example-2",
+          "operations": [
+            "SAMPLE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 pJ (optical)"
         }
-      ],
-      "speed_notes": "nanoseconds per sample (photon transit time through chip)",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "53+ photons demonstrated (Jiuzhang); quantum advantage claimed for n\u226550",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 pJ (optical)"
+      ]
     },
     {
       "id": "planimeter",
       "name": "Planimeter",
       "realizes": "area enclosed by an arbitrary plane curve (\u222e via Green's theorem)",
-      "description": "A two-bar linkage with a tracing point at one end and a measuring wheel mounted on the tracer arm. When the operator traces the boundary of an arbitrary shape, the wheel rolls only in the direction perpendicular to the tracer arm \u2014 the component encoding the integrand of Green's theorem (\u222e x dy). The total wheel rotation equals the enclosed area regardless of path geometry. The polar planimeter (Amsler, 1854) requires no straight guide rail and works anywhere on a flat surface. Precision versions routinely achieve 0.1% accuracy. Historically used in cartography, engineering drawing, and medical imaging to measure irregular areas from printed plans.",
+      "description": "A two-bar linkage with a tracing point at one end and a measuring wheel mounted on the tracer arm. When the operator traces the boundary of an arbitrary shape, the wheel rolls only in the direction perpendicular to the tracer arm \u2014 the component encoding the integrand of Green's theorem (\u222e x dy). The total wheel rotation equals the enclosed area regardless of path geometry. The polar planimeter (Amsler, 1854) requires no straight guide rail and works anywhere on a flat surface. Precision versions routinely achieve 0.1% accuracy. Historically used in cartography, engineering drawing, and medical imaging to measure irregular areas from printed plans. Speed: seconds to minutes per area measurement (tracing speed). Capacity: single scalar output (area); arbitrary curve complexity.",
       "substrate": [
         "mechanical"
       ],
@@ -1035,35 +1241,39 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "INTEGRATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Planimeter",
           "label": "Planimeter \u2014 Wikipedia",
-          "id": "planimeter-example-1"
+          "id": "planimeter-example-1",
+          "operations": [
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://americanhistory.si.edu/collections/object-groups/mechanical-integrators/integrators-and-integraphs",
           "label": "Integrators and Integraphs \u2014 Smithsonian National Museum of American History",
           "description": "Collection and history of mechanical integrating instruments including planimeters and disk-wheel integrators",
-          "id": "planimeter-example-2"
+          "id": "planimeter-example-2",
+          "operations": [
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "seconds to minutes per area measurement (tracing speed)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "single scalar output (area); arbitrary curve complexity",
-      "scale_category": "single-op",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "differential-analyzer",
       "name": "Differential analyzer",
       "realizes": "solutions to systems of ODEs (via chained mechanical integration)",
-      "description": "Built by Vannevar Bush and Harold Hazen at MIT in 1928\u20131931, the differential analyzer is a general-purpose analog ODE solver. The core component is a wheel-and-disk integrator: a disk rotates at rate proportional to one variable; a wheel resting on the disk at a radial position proportional to a second variable rotates at their product \u2014 implementing \u222b y dx mechanically. Multiple integrators are chained via shafts and differential gears to represent higher-order ODEs. A torque amplifier (Bush's key innovation) prevents the tiny friction coupling from loading the computation. The MIT machine solved sixth-order ODEs; later machines solved 18th-order equations. The device is the missing link between the planimeter (single integral) and the fire-control computer (hardwired ODE).",
+      "description": "Built by Vannevar Bush and Harold Hazen at MIT in 1928\u20131931, the differential analyzer is a general-purpose analog ODE solver. The core component is a wheel-and-disk integrator: a disk rotates at rate proportional to one variable; a wheel resting on the disk at a radial position proportional to a second variable rotates at their product \u2014 implementing \u222b y dx mechanically. Multiple integrators are chained via shafts and differential gears to represent higher-order ODEs. A torque amplifier (Bush's key innovation) prevents the tiny friction coupling from loading the computation. The MIT machine solved sixth-order ODEs; later machines solved 18th-order equations. The device is the missing link between the planimeter (single integral) and the fire-control computer (hardwired ODE). Speed: minutes per ODE solution (shaft rotation time). Capacity: up to 18th-order ODEs (later machines); ~3 significant figures.",
       "substrate": [
         "mechanical"
       ],
@@ -1072,43 +1282,57 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE",
-        "MULTIPLY",
-        "ADD"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Differential_analyser",
           "label": "Differential analyser \u2014 Wikipedia",
-          "id": "differential-analyzer-example-1"
+          "id": "differential-analyzer-example-1",
+          "operations": [
+            "INTEGRATE",
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://www.computerhistory.org/revolution/analog-computers/3/143",
           "label": "Bush's Analog Solution \u2014 Computer History Museum",
           "description": "History of the differential analyzer and its role in analog computing before electronic computers",
-          "id": "differential-analyzer-example-2"
+          "id": "differential-analyzer-example-2",
+          "operations": [
+            "INTEGRATE",
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://www.mit.edu/~klund/analyzer/",
           "label": "Vannevar Bush's Differential Analyzer \u2014 MIT",
           "description": "Technical description of the wheel-and-disk integrator mechanism and the torque amplifier innovation",
-          "id": "differential-analyzer-example-3"
+          "id": "differential-analyzer-example-3",
+          "operations": [
+            "INTEGRATE",
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "minutes per ODE solution (shaft rotation time)",
-      "speed_category": "minutes",
-      "compute_capacity_notes": "up to 18th-order ODEs (later machines); ~3 significant figures",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "coanda-fluidics",
       "name": "Pneumatic logic (Coanda-effect fluidics)",
       "realizes": "boolean logic (AND, OR, NOT, NOR) via wall-attachment bistability",
-      "description": "A jet of air entering a Y-shaped channel naturally attaches to one wall (the Coand\u0103 effect) and locks into that state by low-pressure recirculation. A small control jet on the opposite side provides enough momentum to switch the main jet to the other wall \u2014 bistable flip-flop behaviour with no moving parts. AND, OR, NOT, and NOR gates are realized by channel geometry; outputs fan out by splitting the attached jet. Developed in the early 1960s at the Harry Diamond Laboratories (Bowles, Gottron) and widely used in industrial control until PLCs displaced them. Inherently radiation-hardened (no electronics) and tolerant of dust and oil. MTBFs of 25,000\u201350,000 hours reported.",
+      "description": "A jet of air entering a Y-shaped channel naturally attaches to one wall (the Coand\u0103 effect) and locks into that state by low-pressure recirculation. A small control jet on the opposite side provides enough momentum to switch the main jet to the other wall \u2014 bistable flip-flop behaviour with no moving parts. AND, OR, NOT, and NOR gates are realized by channel geometry; outputs fan out by splitting the attached jet. Developed in the early 1960s at the Harry Diamond Laboratories (Bowles, Gottron) and widely used in industrial control until PLCs displaced them. Inherently radiation-hardened (no electronics) and tolerant of dust and oil. MTBFs of 25,000\u201350,000 hours reported. Speed: milliseconds per gate switching (air transit time). Capacity: arbitrary boolean circuits; industrial systems ran thousands of gates.",
       "substrate": [
         "fluidics"
       ],
@@ -1117,37 +1341,43 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "AND",
-        "OR",
-        "NOT"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Coand%C4%83_effect",
           "label": "Coand\u0103 effect \u2014 Wikipedia",
-          "id": "coanda-fluidics-example-1"
+          "id": "coanda-fluidics-example-1",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 mJ (fluidic)"
         },
         {
           "url": "https://www.researchgate.net/publication/274059668_Fluidic_Elements_based_on_Coanda_Effect",
           "label": "Fluidic Elements based on Coanda Effect (ResearchGate)",
           "description": "Technical analysis of Coanda-effect bistable amplifiers and their use as logic elements",
-          "id": "coanda-fluidics-example-2"
+          "id": "coanda-fluidics-example-2",
+          "operations": [
+            "AND",
+            "OR",
+            "NOT"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "~1 mJ (fluidic)"
         }
-      ],
-      "speed_notes": "milliseconds per gate switching (air transit time)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "arbitrary boolean circuits; industrial systems ran thousands of gates",
-      "scale_category": "small",
-      "energy_per_operation": "~1 mJ (fluidic)"
+      ]
     },
     {
       "id": "dishbrain",
       "name": "DishBrain (in-vitro neural culture)",
       "realizes": "closed-loop sensorimotor control / game-playing (via biological learning)",
-      "description": "~800,000 human iPSC-derived or mouse cortical neurons are plated onto a high-density multi-electrode array (HD-MEA). The DishBrain system (Kagan et al., 2022, Neuron) embeds the culture in a simulated game of Pong: electrode stimulation encodes ball position and side; the recorded neural firing pattern drives paddle movement. Motivated by the free-energy principle \u2014 cells prefer predictable stimulation over white noise \u2014 the culture learns to rally the ball within five minutes of real-time play. No explicit training algorithm runs; the biology self-organizes. The substrate is neurons-in-a-dish, making this the only entry where the substrate is alive and may be sentient.",
+      "description": "~800,000 human iPSC-derived or mouse cortical neurons are plated onto a high-density multi-electrode array (HD-MEA). The DishBrain system (Kagan et al., 2022, Neuron) embeds the culture in a simulated game of Pong: electrode stimulation encodes ball position and side; the recorded neural firing pattern drives paddle movement. Motivated by the free-energy principle \u2014 cells prefer predictable stimulation over white noise \u2014 the culture learns to rally the ball within five minutes of real-time play. No explicit training algorithm runs; the biology self-organizes. The substrate is neurons-in-a-dish, making this the only entry where the substrate is alive and may be sentient. Speed: minutes to learn; milliseconds per action (neural firing rate). Capacity: closed-loop sensorimotor tasks; ~800,000 neurons, ~22,000 electrodes.",
       "substrate": [
         "biological"
       ],
@@ -1156,9 +1386,6 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "statistical",
       "examples": [
@@ -1166,26 +1393,33 @@
           "url": "https://www.cell.com/neuron/fulltext/S0896-6273(22)00806-6",
           "label": "In vitro neurons learn and exhibit sentience when embodied in a simulated game-world (Neuron, 2022)",
           "description": "Kagan et al. \u2014 original DishBrain paper showing iPSC-derived neurons learning Pong via free-energy-principle stimulation",
-          "id": "dishbrain-example-1"
+          "id": "dishbrain-example-1",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
         },
         {
           "url": "https://www.nature.com/articles/d41586-022-03229-y",
           "label": "Neurons in a dish learn to play Pong \u2014 what's next? (Nature, 2022)",
           "description": "Nature news article contextualizing the DishBrain result within neuromorphic computing and the ethics of in-vitro neural systems",
-          "id": "dishbrain-example-2"
+          "id": "dishbrain-example-2",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
         }
-      ],
-      "speed_notes": "minutes to learn; milliseconds per action (neural firing rate)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "closed-loop sensorimotor tasks; ~800,000 neurons, ~22,000 electrodes",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 \u03bcJ (biological)"
+      ]
     },
     {
       "id": "photonic-chip",
       "name": "Photonic integrated circuit (silicon photonics)",
       "realizes": "matrix-vector multiplication / unitary linear transforms (for neural network inference)",
-      "description": "Arrays of Mach-Zehnder interferometers (MZIs) and microring resonators on a silicon chip implement programmable unitary matrices in the optical domain. Light encodes values as amplitude or phase; passing through a mesh of beam-splitters (MZIs) with tunable phase shifters multiplies an optical input vector by the weight matrix in a single forward pass. Because photons travel at c and interference is intrinsically parallel, a single matrix-vector multiply completes in picoseconds with energy consumption set only by modulation and detection, not arithmetic logic. MIT demonstrated a photonic processor running all key deep-learning operations on-chip. Neuromorphic silicon photonics has achieved 50 GHz tiled matrix multiplication.",
+      "description": "Arrays of Mach-Zehnder interferometers (MZIs) and microring resonators on a silicon chip implement programmable unitary matrices in the optical domain. Light encodes values as amplitude or phase; passing through a mesh of beam-splitters (MZIs) with tunable phase shifters multiplies an optical input vector by the weight matrix in a single forward pass. Because photons travel at c and interference is intrinsically parallel, a single matrix-vector multiply completes in picoseconds with energy consumption set only by modulation and detection, not arithmetic logic. MIT demonstrated a photonic processor running all key deep-learning operations on-chip. Neuromorphic silicon photonics has achieved 50 GHz tiled matrix multiplication. Speed: picoseconds per matrix-vector multiply; 50 GHz demonstrated. Capacity: 64\u00d764 to 512\u00d7512 unitary matrices on current chips; ~4-6 bit precision.",
       "substrate": [
         "optical",
         "electronic"
@@ -1195,10 +1429,6 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "MULTIPLY",
-        "ADD"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
@@ -1206,26 +1436,35 @@
           "url": "https://news.mit.edu/2024/photonic-processor-could-enable-ultrafast-ai-computations-1202",
           "label": "MIT \u2014 Photonic processor for ultrafast AI computations (2024)",
           "description": "Fully integrated photonic processor performing all key deep neural network operations on-chip at the speed of light",
-          "id": "photonic-chip-example-1"
+          "id": "photonic-chip-example-1",
+          "operations": [
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "small",
+          "energy_per_operation": "~1 nJ (electronic)"
         },
         {
           "url": "https://www.nature.com/articles/s41377-022-00717-8",
           "label": "Photonic matrix multiplication lights up photonic accelerator (Light: Sci. & Apps., 2022)",
           "description": "Review of MZI-mesh, microring-resonator, and wavelength-division-multiplexing methods for optical matrix multiplication",
-          "id": "photonic-chip-example-2"
+          "id": "photonic-chip-example-2",
+          "operations": [
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "small",
+          "energy_per_operation": "~1 nJ (electronic)"
         }
-      ],
-      "speed_notes": "picoseconds per matrix-vector multiply; 50 GHz demonstrated",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "64\u00d764 to 512\u00d7512 unitary matrices on current chips; ~4-6 bit precision",
-      "scale_category": "small",
-      "energy_per_operation": "~1 nJ (electronic)"
+      ]
     },
     {
       "id": "gate-quantum-computer",
       "name": "Gate-based quantum computer",
       "realizes": "unitary quantum computation / quantum algorithms (Shor factoring, Grover search, VQE)",
-      "description": "A register of qubits \u2014 typically superconducting transmons cooled to ~10 mK \u2014 whose state is manipulated by sequences of microwave pulses implementing one- and two-qubit unitary gates. Any computation is a product of these gates, forming a universal gate set. Superposition lets a qubit represent 0 and 1 simultaneously; entanglement correlates qubits non-classically; interference is used to amplify correct answers and cancel wrong ones. Shor's algorithm factors n-bit integers in O(n\u00b3) gate operations vs. exponential classically; Grover's algorithm searches an unsorted list in O(\u221aN). Current NISQ (noisy intermediate-scale quantum) devices have 100\u20131000 physical qubits with limited coherence; fault-tolerant quantum computing requires ~1000 physical qubits per logical qubit. Google's 2019 Sycamore experiment claimed quantum supremacy on a sampling task in 200 seconds vs. ~10,000 years classically.",
+      "description": "A register of qubits \u2014 typically superconducting transmons cooled to ~10 mK \u2014 whose state is manipulated by sequences of microwave pulses implementing one- and two-qubit unitary gates. Any computation is a product of these gates, forming a universal gate set. Superposition lets a qubit represent 0 and 1 simultaneously; entanglement correlates qubits non-classically; interference is used to amplify correct answers and cancel wrong ones. Shor's algorithm factors n-bit integers in O(n\u00b3) gate operations vs. exponential classically; Grover's algorithm searches an unsorted list in O(\u221aN). Current NISQ (noisy intermediate-scale quantum) devices have 100\u20131000 physical qubits with limited coherence; fault-tolerant quantum computing requires ~1000 physical qubits per logical qubit. Google's 2019 Sycamore experiment claimed quantum supremacy on a sampling task in 200 seconds vs. ~10,000 years classically. Speed: nanosecond gate times; microseconds coherence (NISQ era). Capacity: 53\u20131121 physical qubits (current hardware); fault-tolerant QC requires orders of magnitude more.",
       "substrate": [
         "quantum",
         "electronic"
@@ -1235,37 +1474,43 @@
       ],
       "determinism": "stochastic",
       "reversibility": "reversible",
-      "operations": [
-        "AND",
-        "NOT",
-        "FANOUT"
-      ],
       "exactness": "approximate",
       "realization_type": "procedural",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Superconducting_quantum_computing",
           "label": "Superconducting quantum computing \u2014 Wikipedia",
-          "id": "gate-quantum-computer-example-1"
+          "id": "gate-quantum-computer-example-1",
+          "operations": [
+            "AND",
+            "NOT",
+            "FANOUT"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "small",
+          "energy_per_operation": "~1 nJ (electronic)"
         },
         {
           "url": "https://www.ibm.com/quantum/hardware",
           "label": "IBM Quantum Hardware",
           "description": "IBM's roadmap for superconducting qubit processors from Condor (1121 qubits) to fault-tolerant systems",
-          "id": "gate-quantum-computer-example-2"
+          "id": "gate-quantum-computer-example-2",
+          "operations": [
+            "AND",
+            "NOT",
+            "FANOUT"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "small",
+          "energy_per_operation": "~1 nJ (electronic)"
         }
-      ],
-      "speed_notes": "nanosecond gate times; microseconds coherence (NISQ era)",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "53\u20131121 physical qubits (current hardware); fault-tolerant QC requires orders of magnitude more",
-      "scale_category": "small",
-      "energy_per_operation": "~1 nJ (electronic)"
+      ]
     },
     {
       "id": "biological-brain",
       "name": "Biological brain",
       "realizes": "general intelligence / perception, memory, reasoning, motor control",
-      "description": "The human brain contains ~86 billion neurons connected by ~10\u00b9\u2075 synapses. Each neuron integrates thousands of synaptic inputs and fires a spike when its membrane potential crosses threshold \u2014 a leaky integrate-and-fire operation. Computation is massively parallel, spike-coded, and energy-efficient at ~20 W total. Synaptic weights are plastic: Hebbian learning and spike-timing-dependent plasticity (STDP) modify connection strengths in response to activity, implementing online learning with no separate training phase. The brain solves tasks \u2014 scene understanding, language, planning \u2014 that remain beyond engineered systems at equivalent energy budgets. Unlike every other entry, the substrate is also the substrate of the observer.",
+      "description": "The human brain contains ~86 billion neurons connected by ~10\u00b9\u2075 synapses. Each neuron integrates thousands of synaptic inputs and fires a spike when its membrane potential crosses threshold \u2014 a leaky integrate-and-fire operation. Computation is massively parallel, spike-coded, and energy-efficient at ~20 W total. Synaptic weights are plastic: Hebbian learning and spike-timing-dependent plasticity (STDP) modify connection strengths in response to activity, implementing online learning with no separate training phase. The brain solves tasks \u2014 scene understanding, language, planning \u2014 that remain beyond engineered systems at equivalent energy budgets. Unlike every other entry, the substrate is also the substrate of the observer. Speed: ~100 Hz spike rate per neuron; millisecond reaction times; years of learning. Capacity: ~86 billion neurons; ~10\u00b9\u2075 synapses; ~20 W; general-purpose cognition.",
       "substrate": [
         "biological"
       ],
@@ -1274,23 +1519,29 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "SAMPLE",
-        "MINIMIZE"
-      ],
       "exactness": "heuristic",
       "realization_type": "statistical",
-      "speed_notes": "~100 Hz spike rate per neuron; millisecond reaction times; years of learning",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "~86 billion neurons; ~10\u00b9\u2075 synapses; ~20 W; general-purpose cognition",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 \u03bcJ (biological)"
+      "examples": [
+        {
+          "id": "biological-brain-default",
+          "url": "",
+          "label": "Default Biological brain implementation",
+          "description": "Basic implementation",
+          "operations": [
+            "SAMPLE",
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
+        }
+      ]
     },
     {
       "id": "spaghetti-sort",
       "name": "Spaghetti sort",
       "realizes": "total ordering of positive reals (sorting) in O(n) physical time",
-      "description": "Cut n spaghetti strands to lengths proportional to the n values to be sorted. Gather them loosely in a fist and lower them vertically onto a flat table so all strands stand upright. Lower a flat hand from above: the first strand it touches is the maximum. Remove it, record the value, repeat \u2014 each contact extracts the next-largest in O(1) time. Preparing the rods is O(n); the n extractions are O(n); the whole sort is O(n) in physical time, exploiting the parallel nature of gravity and contact. Introduced by A. K. Dewdney in Scientific American. Illustrates how physical parallelism can circumvent the \u03a9(n log n) comparison-sort lower bound by using a non-comparison primitive (contact with a plane).",
+      "description": "Cut n spaghetti strands to lengths proportional to the n values to be sorted. Gather them loosely in a fist and lower them vertically onto a flat table so all strands stand upright. Lower a flat hand from above: the first strand it touches is the maximum. Remove it, record the value, repeat \u2014 each contact extracts the next-largest in O(1) time. Preparing the rods is O(n); the n extractions are O(n); the whole sort is O(n) in physical time, exploiting the parallel nature of gravity and contact. Introduced by A. K. Dewdney in Scientific American. Illustrates how physical parallelism can circumvent the \u03a9(n log n) comparison-sort lower bound by using a non-comparison primitive (contact with a plane). Speed: O(n) physical steps; each step is constant time. Capacity: n positive real values; precision limited by ability to cut and measure strand lengths.",
       "substrate": [
         "mechanical"
       ],
@@ -1299,30 +1550,28 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "SORT",
-        "COMPARE"
-      ],
       "exactness": "exact",
       "realization_type": "procedural",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Spaghetti_sort",
           "label": "Spaghetti sort \u2014 Wikipedia",
-          "id": "spaghetti-sort-example-1"
+          "id": "spaghetti-sort-example-1",
+          "operations": [
+            "SORT",
+            "COMPARE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "O(n) physical steps; each step is constant time",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "n positive real values; precision limited by ability to cut and measure strand lengths",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "mems-accelerometer",
       "name": "MEMS accelerometer",
       "realizes": "Newton's second law (a = F/m) \u2014 continuous analog acceleration measurement",
-      "description": "A microfabricated proof mass (typically silicon, ~1 \u03bcg) suspended by folded-beam springs. Under acceleration, the mass displaces by x = ma/k (Hooke's law + Newton's second law in equilibrium). Displacement is read by capacitive sensing: the mass carries interdigitated comb fingers whose capacitance changes by \u0394C \u221d x \u221d a. The device is a physical analog computer that continuously divides force by spring constant \u2014 realizing a = F/m at the hardware level without arithmetic. MEMS gyroscopes extend this to Coriolis-effect angular-rate sensing, and IMUs combine three-axis accelerometers and gyroscopes to integrate trajectory in 3D. Found in every smartphone, airbag controller, and inertial navigation unit.",
+      "description": "A microfabricated proof mass (typically silicon, ~1 \u03bcg) suspended by folded-beam springs. Under acceleration, the mass displaces by x = ma/k (Hooke's law + Newton's second law in equilibrium). Displacement is read by capacitive sensing: the mass carries interdigitated comb fingers whose capacitance changes by \u0394C \u221d x \u221d a. The device is a physical analog computer that continuously divides force by spring constant \u2014 realizing a = F/m at the hardware level without arithmetic. MEMS gyroscopes extend this to Coriolis-effect angular-rate sensing, and IMUs combine three-axis accelerometers and gyroscopes to integrate trajectory in 3D. Found in every smartphone, airbag controller, and inertial navigation unit. Speed: continuous real-time output (bandwidth typically 1 Hz \u2013 10 kHz). Capacity: single scalar (or 3-axis) acceleration; sub-\u03bcg resolution in precision variants.",
       "substrate": [
         "mechanical",
         "electronic"
@@ -1332,36 +1581,41 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "MULTIPLY-by-constant",
-        "INTEGRATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Accelerometer",
           "label": "Accelerometer \u2014 Wikipedia",
-          "id": "mems-accelerometer-example-1"
+          "id": "mems-accelerometer-example-1",
+          "operations": [
+            "MULTIPLY-by-constant",
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://www.analog.com/en/resources/technical-articles/accelerometer-and-gyroscopes-sensors-operation-sensing-and-applications.html",
           "label": "Accelerometer and Gyroscope Sensors: Operation and Applications \u2014 Analog Devices",
           "description": "Technical overview of proof-mass MEMS mechanics, capacitive sensing readout, and application in inertial navigation",
-          "id": "mems-accelerometer-example-2"
+          "id": "mems-accelerometer-example-2",
+          "operations": [
+            "MULTIPLY-by-constant",
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "continuous real-time output (bandwidth typically 1 Hz \u2013 10 kHz)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "single scalar (or 3-axis) acceleration; sub-\u03bcg resolution in precision variants",
-      "scale_category": "single-op",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "watt-governor",
       "name": "Watt centrifugal governor",
       "realizes": "proportional speed regulation (continuous set-point tracking via negative feedback)",
-      "description": "Two steel balls are mounted on hinged arms linked to a rotating vertical shaft driven by the engine. As engine speed increases, centrifugal force swings the balls outward and upward; through a collar linkage this motion partially closes the steam throttle, reducing power and slowing the engine. As speed falls the balls drop, the throttle reopens, and the cycle repeats. The system finds equilibrium where centrifugal force exactly balances gravity \u2014 and that equilibrium corresponds to the desired set speed. James Watt adapted this in 1788 from a windmill governor; James Clerk Maxwell's 1868 paper 'On Governors' analysed it as the first mathematical treatment of feedback control. The device is a physical analog computer that continuously solves the equation: throttle = f(\u03c9 \u2212 \u03c9_set).",
+      "description": "Two steel balls are mounted on hinged arms linked to a rotating vertical shaft driven by the engine. As engine speed increases, centrifugal force swings the balls outward and upward; through a collar linkage this motion partially closes the steam throttle, reducing power and slowing the engine. As speed falls the balls drop, the throttle reopens, and the cycle repeats. The system finds equilibrium where centrifugal force exactly balances gravity \u2014 and that equilibrium corresponds to the desired set speed. James Watt adapted this in 1788 from a windmill governor; James Clerk Maxwell's 1868 paper 'On Governors' analysed it as the first mathematical treatment of feedback control. The device is a physical analog computer that continuously solves the equation: throttle = f(\u03c9 \u2212 \u03c9_set). Speed: continuous real-time (mechanical response time ~0.1\u20131 s). Capacity: single-variable set-point control; extends to multi-variable with additional linkages.",
       "substrate": [
         "mechanical"
       ],
@@ -1370,36 +1624,41 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "FEEDBACK",
-        "INTEGRATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Centrifugal_governor",
           "label": "Centrifugal governor \u2014 Wikipedia",
-          "id": "watt-governor-example-1"
+          "id": "watt-governor-example-1",
+          "operations": [
+            "FEEDBACK",
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://makezine.com/projects/remaking-history-james-watt-and-the-flyball-governor/",
           "label": "Remaking History: James Watt and the Flyball Governor \u2014 Make:",
           "description": "Build guide and historical context for Watt's flyball governor as the founding device of feedback control theory",
-          "id": "watt-governor-example-2"
+          "id": "watt-governor-example-2",
+          "operations": [
+            "FEEDBACK",
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "continuous real-time (mechanical response time ~0.1\u20131 s)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "single-variable set-point control; extends to multi-variable with additional linkages",
-      "scale_category": "single-op",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "teledeltos",
       "name": "Resistive sheet (Teledeltos) Laplace solver",
       "realizes": "solutions to Laplace's equation \u2207\u00b2\u03c6 = 0 (electrostatics, heat, groundwater flow)",
-      "description": "A sheet of Teledeltos \u2014 carbon-coated resistive paper with ~6 k\u03a9/square resistivity \u2014 conducts current that obeys the same Laplace equation as electrostatic potential, steady-state heat conduction, inviscid fluid flow, and Darcy groundwater seepage. Boundary conditions are imposed by painting silver-loaded conductive ink in the shape of conductors or flow boundaries; a voltage is applied across them. A probe voltmeter scanned over the sheet reads the potential field directly. Complex 2D geometries that would require days of PDE numerics can be mapped in hours. Widely used from the 1930s through the 1970s in capacitor design, transformer core analysis, dam seepage studies, and aircraft aerodynamics before finite-element codes displaced it.",
+      "description": "A sheet of Teledeltos \u2014 carbon-coated resistive paper with ~6 k\u03a9/square resistivity \u2014 conducts current that obeys the same Laplace equation as electrostatic potential, steady-state heat conduction, inviscid fluid flow, and Darcy groundwater seepage. Boundary conditions are imposed by painting silver-loaded conductive ink in the shape of conductors or flow boundaries; a voltage is applied across them. A probe voltmeter scanned over the sheet reads the potential field directly. Complex 2D geometries that would require days of PDE numerics can be mapped in hours. Widely used from the 1930s through the 1970s in capacitor design, transformer core analysis, dam seepage studies, and aircraft aerodynamics before finite-element codes displaced it. Speed: hours for full field map (manual probe scanning); boundary setup in minutes. Capacity: 2D scalar field on arbitrary domain geometry; ~1-2% accuracy.",
       "substrate": [
         "electronic"
       ],
@@ -1408,35 +1667,39 @@
       ],
       "determinism": "deterministic",
       "reversibility": "reversible",
-      "operations": [
-        "INTEGRATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Teledeltos",
           "label": "Teledeltos \u2014 Wikipedia",
-          "id": "teledeltos-example-1"
+          "id": "teledeltos-example-1",
+          "operations": [
+            "INTEGRATE"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "small",
+          "energy_per_operation": "~1 nJ (electronic)"
         },
         {
           "url": "https://www.electronicdesign.com/technologies/analog/article/21776001/whats-all-this-teledeltos-stuff-anyway",
           "label": "What's All This Teledeltos Stuff, Anyway? \u2014 Electronic Design",
           "description": "Practical history of Teledeltos paper as an analog field plotter for electrostatics, heat flow, and fluid mechanics problems",
-          "id": "teledeltos-example-2"
+          "id": "teledeltos-example-2",
+          "operations": [
+            "INTEGRATE"
+          ],
+          "speed_category": "minutes",
+          "scale_category": "small",
+          "energy_per_operation": "~1 nJ (electronic)"
         }
-      ],
-      "speed_notes": "hours for full field map (manual probe scanning); boundary setup in minutes",
-      "speed_category": "minutes",
-      "compute_capacity_notes": "2D scalar field on arbitrary domain geometry; ~1-2% accuracy",
-      "scale_category": "small",
-      "energy_per_operation": "~1 nJ (electronic)"
+      ]
     },
     {
       "id": "mechanical-gyroscope",
       "name": "Mechanical gyroscope",
       "realizes": "time-integral of angular velocity (orientation tracking)",
-      "description": "A spinning rotor mounted in gimbals conserves angular momentum. Any external torque causes precession perpendicular to both the spin axis and the applied torque \u2014 rather than tilting directly. By reading gimbal angles, the device outputs the accumulated rotation of the platform relative to inertial space. It is a physical integrator: angular velocity in \u2192 angle out, with no arithmetic required. Inertial navigation systems chain three orthogonal gyroscopes with three accelerometers; double-integrating the accelerometer outputs (in the gyroscope-maintained inertial frame) gives position. Mechanical gyros guided Apollo missions and ICBM warheads; they have largely been replaced by MEMS and ring-laser gyroscopes but remain the conceptual anchor of inertial navigation.",
+      "description": "A spinning rotor mounted in gimbals conserves angular momentum. Any external torque causes precession perpendicular to both the spin axis and the applied torque \u2014 rather than tilting directly. By reading gimbal angles, the device outputs the accumulated rotation of the platform relative to inertial space. It is a physical integrator: angular velocity in \u2192 angle out, with no arithmetic required. Inertial navigation systems chain three orthogonal gyroscopes with three accelerometers; double-integrating the accelerometer outputs (in the gyroscope-maintained inertial frame) gives position. Mechanical gyros guided Apollo missions and ICBM warheads; they have largely been replaced by MEMS and ring-laser gyroscopes but remain the conceptual anchor of inertial navigation. Speed: continuous real-time (spin-up time seconds to minutes). Capacity: 3-axis orientation; drift accumulates over time (arcseconds per hour in precision instruments).",
       "substrate": [
         "mechanical"
       ],
@@ -1445,35 +1708,39 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "INTEGRATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Inertial_navigation_system",
           "label": "Inertial navigation system \u2014 Wikipedia",
-          "id": "mechanical-gyroscope-example-1"
+          "id": "mechanical-gyroscope-example-1",
+          "operations": [
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-696.pdf",
           "label": "An Introduction to Inertial Navigation \u2014 University of Cambridge",
           "description": "Technical primer on how gyroscopes integrate angular velocity and how accelerometers integrate to position in an INS",
-          "id": "mechanical-gyroscope-example-2"
+          "id": "mechanical-gyroscope-example-2",
+          "operations": [
+            "INTEGRATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "continuous real-time (spin-up time seconds to minutes)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "3-axis orientation; drift accumulates over time (arcseconds per hour in precision instruments)",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     },
     {
       "id": "optical-correlator",
       "name": "Optical correlator (4f / VanderLugt filter)",
       "realizes": "cross-correlation / matched filtering (pattern detection in O(1) optical time)",
-      "description": "A 4f lens system consists of two lenses separated by twice their focal length with a holographic or spatial-light-modulator (SLM) filter at the shared Fourier plane. The first lens computes the Fourier transform of the input image; the filter multiplies by the complex conjugate of the reference pattern's Fourier transform; the second lens inverse-Fourier-transforms the product, yielding the cross-correlation at the output plane. This implements a matched filter \u2014 the canonical operation for detecting a known pattern in a cluttered scene \u2014 in a single optical pass at the speed of light, regardless of image size. The system realizes the convolution theorem physically: FT(f\u22c6g) = F*\u00b7G. Used in optical character recognition, fingerprint identification, and radar pulse compression.",
+      "description": "A 4f lens system consists of two lenses separated by twice their focal length with a holographic or spatial-light-modulator (SLM) filter at the shared Fourier plane. The first lens computes the Fourier transform of the input image; the filter multiplies by the complex conjugate of the reference pattern's Fourier transform; the second lens inverse-Fourier-transforms the product, yielding the cross-correlation at the output plane. This implements a matched filter \u2014 the canonical operation for detecting a known pattern in a cluttered scene \u2014 in a single optical pass at the speed of light, regardless of image size. The system realizes the convolution theorem physically: FT(f\u22c6g) = F*\u00b7G. Used in optical character recognition, fingerprint identification, and radar pulse compression. Speed: picoseconds to nanoseconds (optical propagation through ~cm path). Capacity: full 2D cross-correlation of megapixel images in a single pass; filter change requires SLM reprogramming.",
       "substrate": [
         "optical"
       ],
@@ -1482,30 +1749,28 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "CORRELATE",
-        "COMPOSE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Optical_correlator",
           "label": "Optical correlator \u2014 Wikipedia",
-          "id": "optical-correlator-example-1"
+          "id": "optical-correlator-example-1",
+          "operations": [
+            "CORRELATE",
+            "COMPOSE"
+          ],
+          "speed_category": "instantaneous",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 pJ (optical)"
         }
-      ],
-      "speed_notes": "picoseconds to nanoseconds (optical propagation through ~cm path)",
-      "speed_category": "instantaneous",
-      "compute_capacity_notes": "full 2D cross-correlation of megapixel images in a single pass; filter change requires SLM reprogramming",
-      "scale_category": "single-op",
-      "energy_per_operation": "~1 pJ (optical)"
+      ]
     },
     {
       "id": "repressilator",
       "name": "Repressilator (synthetic gene oscillator)",
       "realizes": "limit-cycle oscillation / biological clock (via negative-feedback transcription loop)",
-      "description": "Elowitz & Leibler (2000, Nature) constructed a synthetic oscillator in E. coli from three mutual repressor genes wired in a ring: LacI represses tetR; TetR represses cI; CI represses lacI. No gene product directly activates its own production, yet the circular negative feedback drives sustained oscillations in protein concentration with a period of ~150 minutes. The repressilator is a physical implementation of a relaxation oscillator: the mathematical operation is sustained limit-cycle dynamics, the same function realized by a CMOS ring oscillator or a Van der Pol circuit \u2014 but in living cells. Demonstrates that genetic regulatory networks can be designed as analog computing substrates, encoding functions (oscillation, bistability, logic) in DNA sequence.",
+      "description": "Elowitz & Leibler (2000, Nature) constructed a synthetic oscillator in E. coli from three mutual repressor genes wired in a ring: LacI represses tetR; TetR represses cI; CI represses lacI. No gene product directly activates its own production, yet the circular negative feedback drives sustained oscillations in protein concentration with a period of ~150 minutes. The repressilator is a physical implementation of a relaxation oscillator: the mathematical operation is sustained limit-cycle dynamics, the same function realized by a CMOS ring oscillator or a Van der Pol circuit \u2014 but in living cells. Demonstrates that genetic regulatory networks can be designed as analog computing substrates, encoding functions (oscillation, bistability, logic) in DNA sequence. Speed: ~150 min period (transcription/translation kinetics). Capacity: single-frequency oscillator; frequency tunable by changing promoter strength or mRNA degradation rate.",
       "substrate": [
         "biological",
         "chemical"
@@ -1515,9 +1780,6 @@
       ],
       "determinism": "stochastic",
       "reversibility": "irreversible",
-      "operations": [
-        "OSCILLATE"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
@@ -1525,25 +1787,32 @@
           "url": "https://www.nature.com/articles/35002125",
           "label": "A synthetic oscillatory network of transcriptional regulators (Nature, 2000)",
           "description": "Elowitz & Leibler \u2014 original repressilator paper constructing a three-gene ring oscillator in E. coli",
-          "id": "repressilator-example-1"
+          "id": "repressilator-example-1",
+          "operations": [
+            "OSCILLATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Repressilator",
           "label": "Repressilator \u2014 Wikipedia",
-          "id": "repressilator-example-2"
+          "id": "repressilator-example-2",
+          "operations": [
+            "OSCILLATE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "single-op",
+          "energy_per_operation": "~1 \u03bcJ (biological)"
         }
-      ],
-      "speed_notes": "~150 min period (transcription/translation kinetics)",
-      "speed_category": "seconds",
-      "compute_capacity_notes": "single-frequency oscillator; frequency tunable by changing promoter strength or mRNA degradation rate",
-      "scale_category": "single-op",
-      "energy_per_operation": "~1 \u03bcJ (biological)"
+      ]
     },
     {
       "id": "tide-predictor",
       "name": "Kelvin tide-predicting machine",
       "realizes": "sum of sinusoids / tidal height (Fourier synthesis)",
-      "description": "Designed by Lord Kelvin (William Thomson) in 1872\u201373, this special-purpose mechanical analog computer performs real-time Fourier synthesis. Each tidal harmonic constituent (M2, S2, N2 \u2026) is represented by a pulley on a crank whose radius sets the amplitude and whose rotation rate is geared to the constituent's period. A single wire threads over all pulleys in series; as a hand-crank advances time, the wire's endpoint traces the sum of all cosines, drawing the predicted tide curve on a paper roll. Kelvin's final version summed 24 harmonic components and could predict a full year of tides in about four hours. Variants were built for the US, India, and other nations and remained in operational use through World War II.",
+      "description": "Designed by Lord Kelvin (William Thomson) in 1872\u201373, this special-purpose mechanical analog computer performs real-time Fourier synthesis. Each tidal harmonic constituent (M2, S2, N2 \u2026) is represented by a pulley on a crank whose radius sets the amplitude and whose rotation rate is geared to the constituent's period. A single wire threads over all pulleys in series; as a hand-crank advances time, the wire's endpoint traces the sum of all cosines, drawing the predicted tide curve on a paper roll. Kelvin's final version summed 24 harmonic components and could predict a full year of tides in about four hours. Variants were built for the US, India, and other nations and remained in operational use through World War II. Speed: a full year of tidal predictions in ~4 hours of cranking. Capacity: up to 40 harmonic components (later US machines); continuous output.",
       "substrate": [
         "mechanical"
       ],
@@ -1552,37 +1821,51 @@
       ],
       "determinism": "deterministic",
       "reversibility": "irreversible",
-      "operations": [
-        "SUM",
-        "MULTIPLY-by-constant",
-        "COS"
-      ],
       "exactness": "approximate",
       "realization_type": "analogical",
       "examples": [
         {
           "url": "https://en.wikipedia.org/wiki/Tide-predicting_machine",
           "label": "Tide-predicting machine \u2014 Wikipedia",
-          "id": "tide-predictor-example-1"
+          "id": "tide-predictor-example-1",
+          "operations": [
+            "SUM",
+            "MULTIPLY-by-constant",
+            "COS"
+          ],
+          "speed_category": "hours",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://spectrum.ieee.org/tide-predictions",
           "label": "Lord Kelvin's Tide-Predicting Machine \u2014 IEEE Spectrum",
           "description": "History of the machine and its role in WWII naval operations, including its use for the D-Day landings",
-          "id": "tide-predictor-example-2"
+          "id": "tide-predictor-example-2",
+          "operations": [
+            "SUM",
+            "MULTIPLY-by-constant",
+            "COS"
+          ],
+          "speed_category": "hours",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         },
         {
           "url": "https://hackaday.com/2015/10/08/how-analog-tide-predictors-changed-human-history/",
           "label": "Hackaday \u2014 How Analog Tide Predictors Changed Human History",
           "description": "Accessible explanation of the pulley-and-wire Fourier summation mechanism and the machine's historical impact",
-          "id": "tide-predictor-example-3"
+          "id": "tide-predictor-example-3",
+          "operations": [
+            "SUM",
+            "MULTIPLY-by-constant",
+            "COS"
+          ],
+          "speed_category": "hours",
+          "scale_category": "medium",
+          "energy_per_operation": "~1 J (mechanical)"
         }
-      ],
-      "speed_notes": "a full year of tidal predictions in ~4 hours of cranking",
-      "speed_category": "hours",
-      "compute_capacity_notes": "up to 40 harmonic components (later US machines); continuous output",
-      "scale_category": "medium",
-      "energy_per_operation": "~1 J (mechanical)"
+      ]
     }
   ]
 }
