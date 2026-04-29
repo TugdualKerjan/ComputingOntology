@@ -28,7 +28,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "id": "gaudi-hanging-models",
@@ -40,7 +40,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -71,7 +71,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "unbounded",
-          "energy_per_operation": "~1 mJ (surface tension)"
+          "energy_per_operation": "mJ"
         }
       ]
     },
@@ -119,7 +119,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (gravitational potential)"
+          "energy_per_operation": "J"
         },
         {
           "id": "digicomp-ii-demo",
@@ -136,7 +136,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (gravitational potential)"
+          "energy_per_operation": "J"
         },
         {
           "id": "digicomp-ii-addition",
@@ -153,7 +153,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (gravitational potential)"
+          "energy_per_operation": "J"
         },
         {
           "id": "knex-marble-computer",
@@ -170,7 +170,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (gravitational potential)"
+          "energy_per_operation": "J"
         },
         {
           "id": "knex-logic-gates",
@@ -187,7 +187,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (gravitational potential)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -218,7 +218,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 mJ (kinetic)"
+          "energy_per_operation": "mJ"
         }
       ]
     },
@@ -248,7 +248,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "medium",
-          "energy_per_operation": "~1 mJ (kinetic)"
+          "energy_per_operation": "mJ"
         }
       ]
     },
@@ -279,7 +279,7 @@
           ],
           "speed_category": "days",
           "scale_category": "medium",
-          "energy_per_operation": "~1 \u03bcJ (biochemical)"
+          "energy_per_operation": "\u03bcJ"
         }
       ]
     },
@@ -311,7 +311,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "large",
-          "energy_per_operation": "~1 fJ (thermal)"
+          "energy_per_operation": "fJ"
         }
       ]
     },
@@ -344,7 +344,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -378,7 +378,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "unbounded",
-          "energy_per_operation": "~1 pJ (kinetic)"
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -409,7 +409,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (hydraulic)"
+          "energy_per_operation": "J"
         },
         {
           "id": "moniac-demonstration",
@@ -422,7 +422,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (hydraulic)"
+          "energy_per_operation": "J"
         },
         {
           "id": "moniac-overview",
@@ -435,7 +435,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (hydraulic)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -467,7 +467,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 fJ (thermal)"
+          "energy_per_operation": "fJ"
         }
       ]
     },
@@ -504,7 +504,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "unbounded",
-          "energy_per_operation": "~1 aJ (quantum)"
+          "energy_per_operation": "aJ"
         }
       ]
     },
@@ -537,7 +537,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "large",
-          "energy_per_operation": "~1 aJ (quantum)"
+          "energy_per_operation": "aJ"
         }
       ]
     },
@@ -570,7 +570,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "large",
-          "energy_per_operation": "~1 pJ (CMOS)"
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -601,7 +601,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "large",
-          "energy_per_operation": "~1 fJ (analog)"
+          "energy_per_operation": "fJ"
         }
       ]
     },
@@ -633,7 +633,7 @@
           ],
           "speed_category": "days",
           "scale_category": "medium",
-          "energy_per_operation": "~1 aJ (molecular)"
+          "energy_per_operation": "aJ"
         }
       ]
     },
@@ -667,7 +667,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 fJ (substrate dependent)"
+          "energy_per_operation": "fJ"
         }
       ]
     },
@@ -700,7 +700,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 nJ (analog electronic)"
+          "energy_per_operation": "nJ"
         }
       ]
     },
@@ -732,7 +732,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "small",
-          "energy_per_operation": "~1 mJ (gravitational)"
+          "energy_per_operation": "mJ"
         },
         {
           "id": "water-computer-hackaday",
@@ -746,7 +746,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "small",
-          "energy_per_operation": "~1 mJ (gravitational)"
+          "energy_per_operation": "mJ"
         }
       ]
     },
@@ -780,7 +780,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (pneumatic)"
+          "energy_per_operation": "J"
         },
         {
           "id": "lego-snake-hackaday",
@@ -796,7 +796,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 J (pneumatic)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -830,7 +830,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~10 J (electromechanical)"
+          "energy_per_operation": "J"
         },
         {
           "id": "fire-control-hackaday",
@@ -845,7 +845,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~10 J (electromechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -876,7 +876,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://www.nature.com/articles/s41598-021-84310-w",
@@ -890,7 +890,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -924,7 +924,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 mJ (fluidic)"
+          "energy_per_operation": "mJ"
         },
         {
           "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0309066",
@@ -940,7 +940,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 mJ (fluidic)"
+          "energy_per_operation": "mJ"
         }
       ]
     },
@@ -970,7 +970,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1001,7 +1001,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "large",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://www.nature.com/articles/s44172-024-00261-w",
@@ -1013,7 +1013,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "large",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1044,7 +1044,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         },
         {
           "url": "https://www.nature.com/articles/s41377-022-01013-1",
@@ -1056,7 +1056,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         }
       ]
     },
@@ -1090,7 +1090,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "medium",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         },
         {
           "url": "https://www.nature.com/articles/nature10262",
@@ -1105,7 +1105,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "medium",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         }
       ]
     },
@@ -1137,7 +1137,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~1 pJ (optical)"
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -1168,7 +1168,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 \u03bcJ (chemical)"
+          "energy_per_operation": "\u03bcJ"
         },
         {
           "url": "https://www.nature.com/articles/s41467-024-45896-7",
@@ -1182,7 +1182,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 \u03bcJ (chemical)"
+          "energy_per_operation": "\u03bcJ"
         }
       ]
     },
@@ -1213,7 +1213,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~1 pJ (optical)"
+          "energy_per_operation": "pJ"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Boson_sampling",
@@ -1224,7 +1224,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "medium",
-          "energy_per_operation": "~1 pJ (optical)"
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -1253,7 +1253,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://americanhistory.si.edu/collections/object-groups/mechanical-integrators/integrators-and-integraphs",
@@ -1265,7 +1265,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1296,7 +1296,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://www.computerhistory.org/revolution/analog-computers/3/143",
@@ -1310,7 +1310,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://www.mit.edu/~klund/analyzer/",
@@ -1324,7 +1324,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1355,7 +1355,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 mJ (fluidic)"
+          "energy_per_operation": "mJ"
         },
         {
           "url": "https://www.researchgate.net/publication/274059668_Fluidic_Elements_based_on_Coanda_Effect",
@@ -1369,7 +1369,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "small",
-          "energy_per_operation": "~1 mJ (fluidic)"
+          "energy_per_operation": "mJ"
         }
       ]
     },
@@ -1399,7 +1399,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         },
         {
           "url": "https://www.nature.com/articles/d41586-022-03229-y",
@@ -1411,7 +1411,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         }
       ]
     },
@@ -1443,7 +1443,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "small",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         },
         {
           "url": "https://www.nature.com/articles/s41377-022-00717-8",
@@ -1456,7 +1456,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "small",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         }
       ]
     },
@@ -1488,7 +1488,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "small",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         },
         {
           "url": "https://www.ibm.com/quantum/hardware",
@@ -1502,7 +1502,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "small",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         }
       ]
     },
@@ -1533,7 +1533,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         }
       ]
     },
@@ -1563,7 +1563,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1594,7 +1594,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://www.analog.com/en/resources/technical-articles/accelerometer-and-gyroscopes-sensors-operation-sensing-and-applications.html",
@@ -1607,7 +1607,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1637,7 +1637,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://makezine.com/projects/remaking-history-james-watt-and-the-flyball-governor/",
@@ -1650,7 +1650,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1679,7 +1679,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "small",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         },
         {
           "url": "https://www.electronicdesign.com/technologies/analog/article/21776001/whats-all-this-teledeltos-stuff-anyway",
@@ -1691,7 +1691,7 @@
           ],
           "speed_category": "minutes",
           "scale_category": "small",
-          "energy_per_operation": "~1 nJ (electronic)"
+          "energy_per_operation": "nJ"
         }
       ]
     },
@@ -1720,7 +1720,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://www.cl.cam.ac.uk/techreports/UCAM-CL-TR-696.pdf",
@@ -1732,7 +1732,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     },
@@ -1762,7 +1762,7 @@
           ],
           "speed_category": "instantaneous",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 pJ (optical)"
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -1793,7 +1793,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         },
         {
           "url": "https://en.wikipedia.org/wiki/Repressilator",
@@ -1804,7 +1804,7 @@
           ],
           "speed_category": "seconds",
           "scale_category": "single-op",
-          "energy_per_operation": "~1 \u03bcJ (biological)"
+          "energy_per_operation": "\u03bcJ"
         }
       ]
     },
@@ -1835,7 +1835,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://spectrum.ieee.org/tide-predictions",
@@ -1849,7 +1849,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         },
         {
           "url": "https://hackaday.com/2015/10/08/how-analog-tide-predictors-changed-human-history/",
@@ -1863,7 +1863,7 @@
           ],
           "speed_category": "hours",
           "scale_category": "medium",
-          "energy_per_operation": "~1 J (mechanical)"
+          "energy_per_operation": "J"
         }
       ]
     }

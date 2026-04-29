@@ -163,7 +163,8 @@
             },
             "energy_per_operation": {
               "type": "string",
-              "description": "Energy consumption per operation for this example"
+              "enum": ["aJ", "fJ", "pJ", "nJ", "μJ", "mJ", "J"],
+              "description": "Energy order of magnitude per operation for this example"
             }
           },
           "required": ["id", "url", "label", "operations", "speed_category", "scale_category", "energy_per_operation"],

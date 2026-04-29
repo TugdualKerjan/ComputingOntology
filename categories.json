@@ -49,5 +49,14 @@
     "procedural",
     "statistical",
     "analogical"
+  ],
+  "energy_per_operation": [
+    "aJ",
+    "fJ",
+    "pJ",
+    "nJ",
+    "μJ",
+    "mJ",
+    "J"
   ]
 }

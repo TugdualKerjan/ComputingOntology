@@ -155,6 +155,16 @@
             border: 1px solid #ddd;
         }
 
+        .tag.clickable {
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tag.clickable:hover {
+            border-color: #999;
+            background: #f5f5f5;
+        }
+
         .tag.substrate {
             border-color: #a0c4ff;
             color: #004494;
@@ -568,6 +578,7 @@
             const schemaEnums = {};
             const dataItems = schema.properties?.data?.items;
             if (dataItems?.properties) {
+                // System-level properties
                 Object.entries(dataItems.properties).forEach(([key, prop]) => {
                     if (prop.items?.enum) {
                         schemaEnums[key] = new Set(prop.items.enum);
@@ -575,6 +586,18 @@
                         schemaEnums[key] = new Set(prop.enum);
                     }
                 });
+
+                // Example-level properties
+                const exampleProps = dataItems.properties.examples?.items?.properties;
+                if (exampleProps) {
+                    Object.entries(exampleProps).forEach(([key, prop]) => {
+                        if (prop.items?.enum) {
+                            schemaEnums[key] = new Set(prop.items.enum);
+                        } else if (prop.enum) {
+                            schemaEnums[key] = new Set(prop.enum);
+                        }
+                    });
+                }
             }
 
             // Check categories against schema enums
@@ -833,7 +856,7 @@
                     ${categoryData.map(cat => `
                         <div class="sidebar-tags">
                             <strong style="font-size: .65rem; color: #666; margin-bottom: .2rem; display: block;">${cat.label}</strong>
-                            ${cat.values.map(val => `<span class="tag ${getTagClass(cat.field)}">${val}</span>`).join('')}
+                            ${cat.values.map(val => `<span class="tag ${getTagClass(cat.field)} clickable" onclick="filterByCategory('${cat.field}', '${val}')">${val}</span>`).join('')}
                         </div>
                     `).join('')}
                 </div>
@@ -910,6 +933,27 @@
 
         function showDetailFromExample(systemId) {
             showDetail(systemId);
+        }
+
+        function filterByCategory(field, value) {
+            // Clear all filters first
+            Object.keys(activeFilters).forEach(key => activeFilters[key] = '');
+
+            // Map field names to filter names
+            let filterField = field;
+            if (field === 'operations') filterField = 'operation';
+
+            // Set the specific filter
+            activeFilters[filterField] = value;
+
+            // Navigate back to list view
+            showList();
+
+            // Rebuild filters to reflect the active state
+            buildFilters();
+
+            // Render with the new filter
+            render();
         }
 
         document.getElementById('back-btn').onclick = showList;
