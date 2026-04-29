@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Physical Computing Ontology</title>
+    <title>Ontoc</title>
+    <link rel="icon" type="image/x-icon" href="favicon_io/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
     <style>
         body {
             font-family: monospace;
@@ -196,7 +199,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: .5rem;
-            margin-bottom: 1rem;
             font-size: .7rem;
         }
 
@@ -271,6 +273,12 @@
             text-decoration: none;
             display: inline-block;
             margin-left: 1rem;
+            height: auto;
+            min-height: unset;
+            max-height: 2rem;
+            line-height: 1.2;
+            box-sizing: border-box;
+            align-self: flex-start;
         }
 
         .add-system-btn:hover {
@@ -440,6 +448,7 @@
             .page-with-sidebar {
                 flex-direction: column;
             }
+
             .category-sidebar {
                 width: 100%;
                 order: -1;
@@ -452,28 +461,39 @@
 
     <!-- LIST PAGE -->
     <div id="list-page">
-        <p class="subtitle">An ontology of physical systems that realize mathematical functions. Each entry answers:
-            f(x) = ? and under what conditions. <a href="https://github.com/TugdualKerjan/ComputingOntology"
-                target="_blank" rel="noopener"
-                style="color: #004494; text-decoration: none; border-bottom: 1px solid #a0c4ff;">Contribute more systems
-                via GitHub PR</a> | <a href="#categories" onclick="showCategories()"
-                style="color: #004494; text-decoration: none; border-bottom: 1px solid #a0c4ff; cursor: pointer;">View categories</a>.</p>
+        <div style="display: flex; align-items: top; justify-content: space-between; margin-bottom: 1.5rem;">
+            <div>
+                <h1 style="margin-bottom: 0.25rem; margin-top: 0px;">Ontoc: An ontology of computers</h1>
+                <p class="subtitle" style="margin-bottom: 0;">To compute: Given an input and a function, produce the
+                    output.</p>
+            </div>
+            <a href="https://github.com/TugdualKerjan/ComputingOntology/issues/new?template=new_system.md"
+                target="_blank" rel="noopener" class="add-system-btn">+ Add entry</a>
+        </div>
 
         <hr class="divider">
 
-        <div class="legend">
-            <span class="legend-item"><span class="legend-dot substrate"></span>substrate</span>
-            <span class="legend-item"><span class="legend-dot determinism"></span>determinism</span>
-            <span class="legend-item"><span class="legend-dot exactness"></span>exactness</span>
-            <span class="legend-item"><span class="legend-dot operation"></span>operation</span>
-            <span class="legend-item"><span class="legend-dot model"></span>model</span>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+            <div class="legend">
+                <span class="legend-item"><span class="legend-dot substrate"></span>substrate</span>
+                <span class="legend-item"><span class="legend-dot determinism"></span>determinism</span>
+                <span class="legend-item"><span class="legend-dot exactness"></span>exactness</span>
+                <span class="legend-item"><span class="legend-dot operation"></span>operation</span>
+                <span class="legend-item"><span class="legend-dot model"></span>model</span>
+            </div>
+            <div style="font-size: 0.78rem;">
+                <a href="#categories" onclick="showCategories()"
+                    style="color: #004494; text-decoration: none; border-bottom: 1px solid #a0c4ff; cursor: pointer;">View
+                    categories</a>
+            </div>
         </div>
 
         <div class="filter-row"><span class="dim-label">substrate</span><select id="sel-substrate"></select></div>
         <div class="filter-row"><span class="dim-label">determinism</span><select id="sel-determinism"></select></div>
         <div class="filter-row"><span class="dim-label">exactness</span><select id="sel-exactness"></select></div>
         <div class="filter-row"><span class="dim-label">operation</span><select id="sel-operation"></select></div>
-        <div class="filter-row"><span class="dim-label">energy/op</span><select id="sel-energy_per_operation"></select></div>
+        <div class="filter-row"><span class="dim-label">energy/op</span><select id="sel-energy_per_operation"></select>
+        </div>
         <div class="filter-row"><span class="dim-label">model</span><select id="sel-computation_model"></select></div>
         <div class="filter-row"><span class="dim-label">speed</span><select id="sel-speed_category"></select></div>
         <div class="filter-row"><span class="dim-label">scale</span><select id="sel-scale_category"></select></div>
@@ -490,8 +510,8 @@
     <div id="detail-page">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
             <button class="back-btn" id="back-btn">← back to list</button>
-            <a href="https://github.com/TugdualKerjan/ComputingOntology/issues/new?template=new_system.md" target="_blank" rel="noopener"
-                class="add-system-btn">+ Add system</a>
+            <a href="https://github.com/TugdualKerjan/ComputingOntology/issues/new?template=new_system.md"
+                target="_blank" rel="noopener" class="add-system-btn">+ Add entry</a>
         </div>
         <div id="detail-content"></div>
     </div>
@@ -510,8 +530,8 @@
     <div id="example-page" style="display: none;">
         <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem;">
             <button class="back-btn" id="example-back-btn">← back to system</button>
-            <a href="https://github.com/TugdualKerjan/ComputingOntology/issues/new?template=new_system.md" target="_blank" rel="noopener"
-                class="add-system-btn">+ Add system</a>
+            <a href="https://github.com/TugdualKerjan/ComputingOntology/issues/new?template=new_system.md"
+                target="_blank" rel="noopener" class="add-system-btn">+ Add entry</a>
         </div>
         <div id="example-content"></div>
     </div>
