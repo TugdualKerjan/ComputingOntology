@@ -126,6 +126,7 @@
                   "AND",
                   "OR",
                   "NOT",
+                  "XOR",
                   "SHIFT",
                   "SAMPLE",
                   "LOG",
@@ -146,7 +147,12 @@
                   "SELECT",
                   "NONLINEAR-TRANSFORM",
                   "MEMORY",
-                  "DIFFERENTIATE"
+                  "DIFFERENTIATE",
+                  "STORE",
+                  "READ",
+                  "COMPOSE",
+                  "SORT",
+                  "COMPARE"
                 ]
               },
               "description": "Operations demonstrated in this example"

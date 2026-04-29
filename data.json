@@ -62,15 +62,39 @@
       "realization_type": "variational",
       "examples": [
         {
-          "id": "soap-film-default",
-          "url": "",
-          "label": "Default Soap film implementation",
-          "description": "Basic implementation",
+          "id": "soap-film-minimal-surface",
+          "url": "https://www.youtube.com/watch?v=Cvs8iRqG6lg",
+          "label": "Soap Film Minimal Surface Demonstration",
+          "description": "Physical demonstration of soap films forming minimal surfaces and solving Plateau's problem with wire frame boundaries",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "mJ"
+        },
+        {
+          "id": "soap-film-steiner-tree",
+          "url": "https://www.youtube.com/watch?v=CbpfpxOdUzU",
+          "label": "Soap Film Steiner Tree Solution",
+          "description": "Demonstration of soap films automatically finding shortest connecting paths between points, approximating Steiner tree solutions",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "mJ"
+        },
+        {
+          "id": "soap-film-surfaces",
+          "url": "https://www.youtube.com/watch?v=YdneSMKObls",
+          "label": "Soap Films and Minimal Surfaces",
+          "description": "Educational video showing how soap films solve complex minimal surface problems that are difficult to calculate mathematically",
           "operations": [
             "MINIMIZE"
           ],
           "speed_category": "minutes",
-          "scale_category": "unbounded",
+          "scale_category": "medium",
           "energy_per_operation": "mJ"
         }
       ]
@@ -270,16 +294,43 @@
       "realization_type": "statistical",
       "examples": [
         {
-          "id": "slime-mold-default",
-          "url": "",
-          "label": "Default Physarum polycephalum (slime mold) implementation",
-          "description": "Basic implementation",
+          "id": "slime-mold-maze-solving",
+          "url": "https://www.youtube.com/watch?v=F3z_mdaQ5ac",
+          "label": "Slime mold solving a maze in the lab",
+          "description": "Laboratory demonstration of Physarum polycephalum solving a maze by finding the shortest path between food sources, more efficiently than graduate students",
           "operations": [
-            "MINIMIZE"
+            "MINIMIZE",
+            "SEARCH"
           ],
-          "speed_category": "days",
+          "speed_category": "hours",
+          "scale_category": "small",
+          "energy_per_operation": "μJ"
+        },
+        {
+          "id": "slime-mold-shortest-path",
+          "url": "https://www.youtube.com/watch?v=KObKd_XdwRM",
+          "label": "How Slime Mold Finds the Shortest Path Through a Maze",
+          "description": "Educational video exploring how the single-celled Physarum polycephalum can navigate and solve mazes without a brain",
+          "operations": [
+            "MINIMIZE",
+            "SEARCH"
+          ],
+          "speed_category": "hours",
           "scale_category": "medium",
-          "energy_per_operation": "\u03bcJ"
+          "energy_per_operation": "μJ"
+        },
+        {
+          "id": "slime-mold-blob-computation",
+          "url": "https://www.youtube.com/watch?v=7YWbY7kWesI",
+          "label": "How This Blob Solves Mazes | WIRED",
+          "description": "WIRED video showing how Physarum polycephalum, a single-celled brainless organism, can make decisions and solve complex maze problems",
+          "operations": [
+            "MINIMIZE",
+            "SEARCH"
+          ],
+          "speed_category": "hours",
+          "scale_category": "medium",
+          "energy_per_operation": "μJ"
         }
       ]
     },
@@ -490,10 +541,10 @@
       "realization_type": "procedural",
       "examples": [
         {
-          "id": "quantum-gate-computer-default",
-          "url": "",
-          "label": "Default Quantum gate computer (superconducting qubits) implementation",
-          "description": "Basic implementation",
+          "id": "google-willow-chip",
+          "url": "https://en.wikipedia.org/wiki/Google_Willow_(quantum_chip)",
+          "label": "Google Willow Quantum Processor",
+          "description": "Google's 105-qubit superconducting quantum processor featuring advanced error correction and demonstrating quantum supremacy on random circuit sampling",
           "operations": [
             "HADAMARD",
             "CNOT",
@@ -503,16 +554,50 @@
             "PAULI-Z"
           ],
           "speed_category": "seconds",
-          "scale_category": "unbounded",
+          "scale_category": "medium",
+          "energy_per_operation": "aJ"
+        },
+        {
+          "id": "ibm-condor",
+          "url": "https://en.wikipedia.org/wiki/IBM_Condor",
+          "label": "IBM Condor Quantum Processor",
+          "description": "IBM's 1,121-qubit superconducting quantum processor using cross-resonance gates, the largest quantum processor by qubit count as of 2024",
+          "operations": [
+            "HADAMARD",
+            "CNOT",
+            "PHASE",
+            "PAULI-X",
+            "PAULI-Y",
+            "PAULI-Z"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "aJ"
+        },
+        {
+          "id": "google-sycamore",
+          "url": "https://en.wikipedia.org/wiki/Sycamore_processor",
+          "label": "Google Sycamore Processor",
+          "description": "Google's 70-qubit (initially 53-qubit) superconducting quantum processor that achieved quantum supremacy on a specific computational task in 2019",
+          "operations": [
+            "HADAMARD",
+            "CNOT",
+            "PHASE",
+            "PAULI-X",
+            "PAULI-Y",
+            "PAULI-Z"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
           "energy_per_operation": "aJ"
         }
       ]
     },
     {
       "id": "quantum-annealer",
-      "name": "Quantum annealer (D-Wave style)",
-      "realizes": "Ising model energy minimization",
-      "description": "Adiabatic quantum computation using quantum annealing to find ground states of Ising Hamiltonians. D-Wave systems use superconducting flux qubits in a specific connectivity graph to solve optimization problems. Speed: microseconds (annealing time). Capacity: combinatorial optimization problems (~5000 variables on current hardware).",
+      "name": "Quantum and quantum-inspired annealers",
+      "realizes": "Ising model energy minimization / QUBO optimization",
+      "description": "Quantum and quantum-inspired systems for solving combinatorial optimization problems through annealing processes. Includes true quantum annealers (D-Wave) using superconducting qubits and quantum-inspired CMOS implementations (Fujitsu, Toshiba, Hitachi) that simulate annealing dynamics. Speed: microseconds to seconds. Capacity: hundreds to thousands of variables.",
       "substrate": [
         "quantum",
         "electronic"
@@ -528,16 +613,76 @@
       "realization_type": "statistical",
       "examples": [
         {
-          "id": "quantum-annealer-default",
-          "url": "",
-          "label": "Default Quantum annealer (D-Wave style) implementation",
-          "description": "Basic implementation",
+          "id": "dwave-advantage2",
+          "url": "https://www.dwavequantum.com/advantage2/",
+          "label": "D-Wave Advantage2 Prototype",
+          "description": "D-Wave's latest quantum annealer prototype with 500+ qubits and 20-way connectivity using the Zephyr topology, designed for optimization problems",
           "operations": [
             "MINIMIZE"
           ],
           "speed_category": "seconds",
           "scale_category": "large",
           "energy_per_operation": "aJ"
+        },
+        {
+          "id": "dwave-advantage",
+          "url": "https://en.wikipedia.org/wiki/D-Wave_Advantage",
+          "label": "D-Wave Advantage System",
+          "description": "Commercial quantum annealer with 5000+ qubits using superconducting flux qubits, available via cloud access for solving combinatorial optimization problems",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "aJ"
+        },
+        {
+          "id": "dwave-2000q",
+          "url": "https://en.wikipedia.org/wiki/D-Wave_2000Q",
+          "label": "D-Wave 2000Q",
+          "description": "Previous generation D-Wave quantum annealer with 2048 qubits, used in research for solving nurse scheduling, satellite clustering, and other optimization problems",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "aJ"
+        },
+        {
+          "id": "fujitsu-digital-annealer",
+          "url": "https://arxiv.org/abs/1609.03494",
+          "label": "Fujitsu Digital Annealer",
+          "description": "Application-specific CMOS hardware for solving fully connected QUBO problems with up to 1024 variables, leveraging massive parallelization available as a cloud service",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "toshiba-sqbm",
+          "url": "https://medium.com/@toshiba_digital/toshiba-simulated-bifurcation-machine-sqbm-77e4e3e8c9f7",
+          "label": "Toshiba SQBM+ (Simulated Bifurcation Machine)",
+          "description": "Quantum-inspired optimization solution based on the Simulated Bifurcation Algorithm, offering combinatorial optimization solving available as a trial on AWS",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "hitachi-statica",
+          "url": "https://spectrum.ieee.org/statica-optimization-processor",
+          "label": "Hitachi / Tokyo Tech STATICA",
+          "description": "Stochastic Cellular Automata Annealer Architecture, a CMOS processor outperforming prior technologies on traveling salesman and portfolio optimization problems",
+          "operations": [
+            "MINIMIZE"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -559,10 +704,38 @@
       "realization_type": "procedural",
       "examples": [
         {
-          "id": "neuromorphic-chip-default",
-          "url": "",
-          "label": "Default Neuromorphic chip (Intel Loihi / IBM TrueNorth) implementation",
-          "description": "Basic implementation",
+          "id": "intel-loihi-2",
+          "url": "https://en.wikipedia.org/wiki/Intel_Loihi",
+          "label": "Intel Loihi 2 Neuromorphic Chip",
+          "description": "Intel's second-generation neuromorphic processor with 128 neuromorphic cores supporting 130,000 synthetic neurons and 130M synapses, 10x faster than Loihi 1",
+          "operations": [
+            "INTEGRATE-AND-FIRE",
+            "WEIGHTED-SUM",
+            "THRESHOLD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "ibm-truenorth",
+          "url": "https://en.wikipedia.org/wiki/TrueNorth",
+          "label": "IBM TrueNorth Neuromorphic Chip",
+          "description": "IBM's neuromorphic processor with 4,096 neurosynaptic cores, 1 million programmable neurons and 256 million synapses, consuming only 70 milliwatts",
+          "operations": [
+            "INTEGRATE-AND-FIRE",
+            "WEIGHTED-SUM",
+            "THRESHOLD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "ibm-northpole",
+          "url": "https://www.nature.com/articles/s41586-023-06697-6",
+          "label": "IBM NorthPole Neuromorphic Chip",
+          "description": "IBM's 2023 neuromorphic processor running ResNet-50 22x faster and 25x more energy efficient than GPUs, 4000x faster than TrueNorth",
           "operations": [
             "INTEGRATE-AND-FIRE",
             "WEIGHTED-SUM",
@@ -591,10 +764,24 @@
       "realization_type": "analogical",
       "examples": [
         {
-          "id": "memristor-crossbar-default",
-          "url": "",
-          "label": "Default Memristor crossbar implementation",
-          "description": "Basic implementation",
+          "id": "fefet-annealer",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8234834/",
+          "label": "FeFET Compute-in-Memory Annealer",
+          "description": "Integrated FeFET chip on 28nm HKMG CMOS implementing multi-epoch simulated annealing, achieving ~27% better solutions and ~2× speedup over conventional SA",
+          "operations": [
+            "MINIMIZE",
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "memristor-matrix-multiply",
+          "url": "https://en.wikipedia.org/wiki/Memristor#Memristive_neural_networks",
+          "label": "Memristive Matrix-Vector Multiplier",
+          "description": "Standard memristor crossbar array performing analog matrix-vector multiplication for neural network inference and in-memory computing applications",
           "operations": [
             "MULTIPLY",
             "ADD"
@@ -623,16 +810,29 @@
       "realization_type": "procedural",
       "examples": [
         {
-          "id": "dna-computer-default",
-          "url": "",
-          "label": "Default DNA computer (Adleman 1994) implementation",
-          "description": "Basic implementation",
+          "id": "adleman-original-experiment",
+          "url": "https://en.wikipedia.org/wiki/DNA_computing",
+          "label": "Adleman's Original 1994 DNA Computer Experiment",
+          "description": "Leonard Adleman's groundbreaking experiment solving a 7-city Hamiltonian path problem using DNA strand hybridization, published in Science magazine and launching the field of DNA computing",
           "operations": [
             "SEARCH",
             "SELECT"
           ],
           "speed_category": "days",
-          "scale_category": "medium",
+          "scale_category": "small",
+          "energy_per_operation": "aJ"
+        },
+        {
+          "id": "adleman-science-paper",
+          "url": "https://doi.org/10.1126/science.7973651",
+          "label": "Molecular computation of solutions to combinatorial problems",
+          "description": "The original 1994 Science paper (L. M. Adleman, Science 266, 1021–1024) describing the first DNA-based computer solving the Hamiltonian path problem",
+          "operations": [
+            "SEARCH",
+            "SELECT"
+          ],
+          "speed_category": "days",
+          "scale_category": "small",
           "energy_per_operation": "aJ"
         }
       ]
@@ -1523,17 +1723,51 @@
       "realization_type": "statistical",
       "examples": [
         {
-          "id": "biological-brain-default",
-          "url": "",
-          "label": "Default Biological brain implementation",
-          "description": "Basic implementation",
+          "id": "human-brain",
+          "url": "https://en.wikipedia.org/wiki/Human_brain",
+          "label": "Human brain",
+          "description": "~86 billion neurons, ~10¹⁵ synapses, 20W power consumption. Demonstrates general intelligence including language, reasoning, planning, and complex motor control through spike-based computation with synaptic plasticity",
           "operations": [
-            "SAMPLE",
-            "MINIMIZE"
+            "INTEGRATE-AND-FIRE",
+            "WEIGHTED-SUM",
+            "THRESHOLD",
+            "MEMORY",
+            "NONLINEAR-TRANSFORM"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "mouse-brain",
+          "url": "https://en.wikipedia.org/wiki/Mouse_brain",
+          "label": "Mouse brain",
+          "description": "~75 million neurons in a 0.4g brain consuming ~0.1W. Demonstrates spatial navigation, learning, memory formation, and sensorimotor integration. Used extensively in neuroscience research for understanding neural computation mechanisms",
+          "operations": [
+            "INTEGRATE-AND-FIRE",
+            "WEIGHTED-SUM",
+            "THRESHOLD",
+            "MEMORY"
           ],
           "speed_category": "seconds",
           "scale_category": "medium",
-          "energy_per_operation": "\u03bcJ"
+          "energy_per_operation": "pJ"
+        },
+        {
+          "id": "crow-brain",
+          "url": "https://en.wikipedia.org/wiki/Bird_intelligence",
+          "label": "Crow brain (corvid intelligence)",
+          "description": "~1.5 billion neurons in corvid brain demonstrating remarkable problem-solving, tool use, and social cognition. Despite lacking mammalian neocortex, achieves complex behaviors through dense pallial connectivity in a compact 15g brain",
+          "operations": [
+            "INTEGRATE-AND-FIRE",
+            "WEIGHTED-SUM",
+            "THRESHOLD",
+            "MEMORY",
+            "SEARCH"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "pJ"
         }
       ]
     },
@@ -1864,6 +2098,86 @@
           "speed_category": "hours",
           "scale_category": "medium",
           "energy_per_operation": "J"
+        }
+      ]
+    },
+    {
+      "id": "thermodynamic-computer-spu",
+      "name": "Thermodynamic computer (Normal Computing SPU)",
+      "realizes": "probabilistic sampling / linear algebra via thermal equilibration",
+      "description": "Analog physics-based computers using thermodynamic principles for computation. Normal Computing's Stochastic Processing Unit (SPU) uses RLC circuits as unit cells with all-to-all coupling via switched capacitances, natively simulating Langevin/Ornstein-Uhlenbeck dynamics for probabilistic reasoning, generative design, and scientific computing.",
+      "substrate": [
+        "electronic",
+        "thermodynamic"
+      ],
+      "computation_model": [
+        "register-machine",
+        "cellular-automaton"
+      ],
+      "determinism": "stochastic",
+      "reversibility": "irreversible",
+      "exactness": "approximate",
+      "realization_type": "analogical",
+      "examples": [
+        {
+          "id": "normal-computing-spu",
+          "url": "https://arxiv.org/abs/2111.01089",
+          "label": "Normal Computing Stochastic Processing Unit",
+          "description": "Thermodynamic computer using RLC circuits on PCB with all-to-all coupling, natively implementing Langevin dynamics for sampling and linear algebra",
+          "operations": [
+            "SAMPLE",
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "medium",
+          "energy_per_operation": "mJ"
+        },
+        {
+          "id": "normal-computing-carnot",
+          "url": "https://www.normalcomputing.com/carnot",
+          "label": "Normal Computing Carnot Architecture",
+          "description": "Silicon-based thermodynamic computing architecture enabling unprecedented scaling for thermodynamic computation, targeting generative design and probabilistic reasoning",
+          "operations": [
+            "SAMPLE",
+            "MULTIPLY",
+            "ADD"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "large",
+          "energy_per_operation": "μJ"
+        }
+      ]
+    },
+    {
+      "id": "memristive-hopfield-network",
+      "name": "Memristive Hopfield network optimizer",
+      "realizes": "optimization via chaotic annealing / transient dynamics",
+      "description": "Memristive circuits implementing Hopfield network topology where the intrinsic nonlinearity of memristors creates transient chaotic annealing processes. The chaotic dynamics enable escape from local minima for solving optimization problems like Max-Cut and continuous function optimization.",
+      "substrate": [
+        "electronic"
+      ],
+      "computation_model": [
+        "cellular-automaton",
+        "register-machine"
+      ],
+      "determinism": "stochastic",
+      "reversibility": "irreversible",
+      "exactness": "heuristic",
+      "realization_type": "analogical",
+      "examples": [
+        {
+          "id": "memristive-optimizer-demo",
+          "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5062178/",
+          "label": "Memristive Chaotic Annealing Experimental Demonstration",
+          "description": "Experimental demonstration of memristive Hopfield networks using chaotic transient dynamics for Max-Cut and continuous optimization problems",
+          "operations": [
+            "MINIMIZE",
+            "SEARCH"
+          ],
+          "speed_category": "seconds",
+          "scale_category": "small",
+          "energy_per_operation": "nJ"
         }
       ]
     }
