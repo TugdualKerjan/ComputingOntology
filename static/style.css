@@ -785,3 +785,46 @@ footer {
         white-space: normal;
     }
 }
+/* Active filter chips: one per active filter whose dimension has no pill row of
+   its own (realization_type, reversibility), so nothing is stated twice. Styled
+   like the filter pills rather than as a solid block, to sit in the same row
+   rhythm as the dimensions above it. */
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    max-width: 100%;
+}
+
+.active-filter-chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    border: 1px solid #111;
+    background: #fff;
+    color: #111;
+    padding: 0.35rem 0.65rem;
+    font-family: monospace;
+    font-size: 0.75rem;
+    cursor: pointer;
+}
+
+.active-filter-chip:hover {
+    background: #f3f4f6;
+}
+
+.active-filter-dim {
+    color: #999;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.active-filter-x {
+    color: #999;
+    font-size: 0.7rem;
+}
+
+.active-filter-chip:hover .active-filter-x {
+    color: #111;
+}

@@ -1,7 +1,8 @@
 from fastapi import FastAPI, Request, HTTPException
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, RedirectResponse
+from urllib.parse import urlencode
 import database
 
 app = FastAPI()
@@ -15,25 +16,51 @@ templates.env.cache = {}
 async def startup_event():
     database.init_database()
 
+# Dimensions the search page can filter on. Every tag, pill and category link in
+# the app points back here as /?<dimension>=<value>, so there is one search
+# surface instead of a page per property value.
+FILTER_DIMENSIONS = [
+    "substrate",
+    "determinism",
+    "reversibility",
+    "exactness",
+    "computation_model",
+    "realization_type",
+]
+
+# Dimensions rendered as pill rows. The rest filter fine but have vocabularies
+# too large to enumerate (realization_type alone has 158 distinct values), so
+# they are reachable by link and shown as removable chips.
+PILL_DIMENSIONS = ["substrate", "determinism", "exactness", "computation_model"]
+
+DIMENSION_LABELS = {
+    "substrate": "substrate",
+    "determinism": "determinism",
+    "reversibility": "reversibility",
+    "exactness": "exactness",
+    "computation_model": "model",
+    "realization_type": "realization",
+}
+
+
+def search_url(dimension: str, value: str) -> str:
+    """Link into the search page with one filter pre-activated."""
+    return "/?" + urlencode({dimension: value})
+
+
 @app.get("/", response_class=HTMLResponse)
-async def index(request: Request, filter: str = None, value: str = None):
+async def index(request: Request, filter: str = None, value: str = None, q: str = ""):
     systems = database.get_all_systems()
 
-    # Apply filtering if parameters are provided
-    if filter and value:
-        filtered_systems = []
-        for system in systems:
-            if filter == "determinism" and system.get("determinism") == value:
-                filtered_systems.append(system)
-            elif filter == "exactness" and system.get("exactness") == value:
-                filtered_systems.append(system)
-            elif filter == "reversibility" and system.get("reversibility") == value:
-                filtered_systems.append(system)
-            elif filter == "realization_type" and system.get("realization_type") == value:
-                filtered_systems.append(system)
-            elif filter == "computation_model" and system.get("computation_model") and value in system["computation_model"]:
-                filtered_systems.append(system)
-        systems = filtered_systems
+    # Repeatable params: /?substrate=Optical&substrate=Quantum&exactness=exact
+    active_filters = {
+        dimension: request.query_params.getlist(dimension)
+        for dimension in FILTER_DIMENSIONS
+    }
+
+    # Back-compat with the older single-filter links (/?filter=exactness&value=exact)
+    if filter in FILTER_DIMENSIONS and value and value not in active_filters[filter]:
+        active_filters[filter].append(value)
 
     substrates = database.get_all_substrates()
     return templates.TemplateResponse(
@@ -42,8 +69,11 @@ async def index(request: Request, filter: str = None, value: str = None):
         context={
             "systems": systems,
             "substrates": substrates,
-            "filter": filter,
-            "filter_value": value
+            "active_filters": active_filters,
+            "text_query": q,
+            "filter_dimensions": FILTER_DIMENSIONS,
+            "pill_dimensions": PILL_DIMENSIONS,
+            "dimension_labels": DIMENSION_LABELS,
         }
     )
 
@@ -91,21 +121,14 @@ async def system_page(request: Request, system_id: str):
         context={"system": system}
     )
 
-@app.get("/ontoc/substrates/{substrate_id}", response_class=HTMLResponse)
-async def substrate_page(request: Request, substrate_id: str):
+@app.get("/ontoc/substrates/{substrate_id}")
+async def substrate_redirect(substrate_id: str):
+    """Substrates are a filter, not a page: bounce to the search with it applied."""
     substrate = database.get_substrate(substrate_id)
     if not substrate:
         raise HTTPException(status_code=404, detail="Substrate not found")
 
-    systems = database.get_systems_by_substrate(substrate_id)
-    return templates.TemplateResponse(
-        request=request,
-        name="substrate.html",
-        context={
-            "substrate": substrate,
-            "systems": systems
-        }
-    )
+    return RedirectResponse(search_url("substrate", substrate["name"]), status_code=302)
 
 @app.get("/api/systems")
 async def api_systems():
@@ -122,73 +145,13 @@ async def api_system(system_id: str):
         raise HTTPException(status_code=404, detail="System not found")
     return system
 
-# Category pages for all property types
-@app.get("/ontoc/determinism/{value}", response_class=HTMLResponse)
-async def determinism_page(request: Request, value: str):
-    systems = database.get_systems_by_property("determinism", value)
-    return templates.TemplateResponse(
-        request=request,
-        name="category.html",
-        context={
-            "property_name": "determinism",
-            "property_value": value,
-            "category_display_name": f"Determinism: {value.title()}",
-            "systems": systems
-        }
-    )
+# The per-property category pages are gone -- clicking a property filters the
+# search instead. Kept as redirects so existing links and bookmarks still land
+# somewhere useful. Declared last so /ontoc/systems/... and /ontoc/substrates/...
+# match first.
+@app.get("/ontoc/{dimension}/{value}")
+async def property_redirect(dimension: str, value: str):
+    if dimension not in FILTER_DIMENSIONS or dimension == "substrate":
+        raise HTTPException(status_code=404, detail="Unknown property")
 
-@app.get("/ontoc/exactness/{value}", response_class=HTMLResponse)
-async def exactness_page(request: Request, value: str):
-    systems = database.get_systems_by_property("exactness", value)
-    return templates.TemplateResponse(
-        request=request,
-        name="category.html",
-        context={
-            "property_name": "exactness",
-            "property_value": value,
-            "category_display_name": f"Exactness: {value.title()}",
-            "systems": systems
-        }
-    )
-
-@app.get("/ontoc/reversibility/{value}", response_class=HTMLResponse)
-async def reversibility_page(request: Request, value: str):
-    systems = database.get_systems_by_property("reversibility", value)
-    return templates.TemplateResponse(
-        request=request,
-        name="category.html",
-        context={
-            "property_name": "reversibility",
-            "property_value": value,
-            "category_display_name": f"Reversibility: {value.title()}",
-            "systems": systems
-        }
-    )
-
-@app.get("/ontoc/realization_type/{value}", response_class=HTMLResponse)
-async def realization_type_page(request: Request, value: str):
-    systems = database.get_systems_by_property("realization_type", value)
-    return templates.TemplateResponse(
-        request=request,
-        name="category.html",
-        context={
-            "property_name": "realization_type",
-            "property_value": value,
-            "category_display_name": f"Realization Type: {value.replace('_', ' ').title()}",
-            "systems": systems
-        }
-    )
-
-@app.get("/ontoc/computation_model/{value}", response_class=HTMLResponse)
-async def computation_model_page(request: Request, value: str):
-    systems = database.get_systems_by_property("computation_model", value)
-    return templates.TemplateResponse(
-        request=request,
-        name="category.html",
-        context={
-            "property_name": "computation_model",
-            "property_value": value,
-            "category_display_name": f"Computation Model: {value.replace('_', ' ').replace('-', ' ').title()}",
-            "systems": systems
-        }
-    )
+    return RedirectResponse(search_url(dimension, value), status_code=302)

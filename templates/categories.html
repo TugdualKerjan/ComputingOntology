@@ -21,7 +21,7 @@
             </div>
             <div class="category-pill-grid">
                 {% for substrate in substrate_categories %}
-                <a href="/ontoc/substrates/{{ substrate.id }}" class="pill substrate-pill" title="{{ substrate.description or '' }}">
+                <a href="/?substrate={{ substrate.name|urlencode }}" class="pill substrate-pill" title="{{ substrate.description or '' }}">
                     <span>{{ substrate.name }}</span>
                     <small>{{ substrate.system_count }} systems</small>
                 </a>
@@ -56,7 +56,7 @@
                 </div>
                 <div class="category-pill-grid">
                     {% for value in prop["values"] %}
-                    <a href="/ontoc/{{ prop.key }}/{{ value|urlencode }}" class="pill property-pill">{{ value }}</a>
+                    <a href="/?{{ prop.key }}={{ value|urlencode }}" class="pill property-pill">{{ value }}</a>
                     {% endfor %}
                 </div>
             </article>

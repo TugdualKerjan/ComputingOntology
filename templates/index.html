@@ -5,9 +5,9 @@
     <div style="display: flex; align-items: top; justify-content: space-between; margin-bottom: 1.5rem;">
         <div>
             <p class="subtitle" style="margin-bottom: 0;">Computers aren't just electronic ! You can compute things with
-                <a href="https://internal.tugdual.fr/ontoc/systems/spaghetti-sort">pasta</a>, <a
-                    href="https://internal.tugdual.fr/ontoc/systems/catenary">ropes</a> or <a
-                    href="https://internal.tugdual.fr/ontoc/systems/lightmatter-passage">light</a>. Our goal here is to
+                <a href="https://computers.tugdual.fr/ontoc/systems/spaghetti-sort">pasta</a>, <a
+                    href="https://computers.tugdual.fr/ontoc/systems/catenary">ropes</a> or <a
+                    href="https://computers.tugdual.fr/ontoc/systems/lightmatter-passage">light</a>. Our goal here is to
                 exhaustively list all
                 systems we currently know about that
                 are capable of computing something.
@@ -32,27 +32,29 @@
         </div> -->
     </div>
 
+    <!-- Filter state arrives in the URL (?substrate=Optical&exactness=exact&q=…) so
+         that every tag and pill in the app is just a link back into this search. -->
+    <script id="initial-filters" type="application/json">{{ {"filters": active_filters, "q": text_query}|tojson }}</script>
+
     <!-- Filter Controls -->
     <div class="filter-section">
-        <div class="filter-group" data-dim="substrate">
-            <span class="dim-label">substrate</span>
-            <div class="filter-options" id="filters-substrate"></div>
+        {% for dim in pill_dimensions %}
+        <div class="filter-group" data-dim="{{ dim }}">
+            <span class="dim-label">{{ dimension_labels[dim] }}</span>
+            <div class="filter-options" id="filters-{{ dim }}"></div>
         </div>
-        <div class="filter-group" data-dim="determinism">
-            <span class="dim-label">determinism</span>
-            <div class="filter-options" id="filters-determinism"></div>
-        </div>
-        <div class="filter-group" data-dim="exactness">
-            <span class="dim-label">exactness</span>
-            <div class="filter-options" id="filters-exactness"></div>
-        </div>
-        <div class="filter-group" data-dim="computation_model">
-            <span class="dim-label">model</span>
-            <div class="filter-options" id="filters-computation_model"></div>
-        </div>
+        {% endfor %}
         <div class="filter-row">
-            <input id="filter-text" placeholder="Filter by name, realizes, description…">
+            <input id="filter-text" placeholder="Filter by name, realizes, description…" value="{{ text_query }}">
             <button class="reset" id="reset-all">✕ reset</button>
+        </div>
+        <!-- Dimensions with vocabularies too large for a pill row (realization_type
+             has 158 values) still filter, and surface here when a link sets them.
+             Dimensions that DO have a pill row are not repeated here -- their pill
+             is already lit. -->
+        <div class="filter-group" id="active-filters-group" hidden>
+            <span class="dim-label">also</span>
+            <div class="active-filters" id="active-filters"></div>
         </div>
     </div>
 
@@ -64,6 +66,8 @@
             <div class="item"
                 data-substrate="{% if system.substrates %}{% for substrate in system.substrates %}{{ substrate.name }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"
                 data-determinism="{{ system.determinism or '' }}" data-exactness="{{ system.exactness or '' }}"
+                data-reversibility="{{ system.reversibility or '' }}"
+                data-realization_type="{{ system.realization_type or '' }}"
                 data-computation_model="{% if system.computation_model %}{% for model in system.computation_model %}{{ model }}{% if not loop.last %},{% endif %}{% endfor %}{% endif %}"
                 data-name="{{ system.name }}" data-realizes="{{ system.realizes or '' }}"
                 data-description="{{ system.description or '' }}">
@@ -79,21 +83,21 @@
                 <div class="tags">
                     {% if system.substrates %}
                     {% for substrate in system.substrates %}
-                    <a href="/ontoc/substrates/{{ substrate.id }}" class="tag substrate clickable">{{ substrate.name
-                        }}</a>
+                    <a href="/?substrate={{ substrate.name|urlencode }}" class="tag substrate clickable">{{
+                        substrate.name }}</a>
                     {% endfor %}
                     {% endif %}
                     {% if system.determinism %}
-                    <a href="/ontoc/determinism/{{ system.determinism }}" class="tag determinism clickable">{{
+                    <a href="/?determinism={{ system.determinism|urlencode }}" class="tag determinism clickable">{{
                         system.determinism }}</a>
                     {% endif %}
                     {% if system.exactness %}
-                    <a href="/ontoc/exactness/{{ system.exactness }}" class="tag exactness clickable">{{
+                    <a href="/?exactness={{ system.exactness|urlencode }}" class="tag exactness clickable">{{
                         system.exactness }}</a>
                     {% endif %}
                     {% if system.computation_model %}
                     {% for model in system.computation_model %}
-                    <a href="/ontoc/computation_model/{{ model }}" class="tag model clickable">{{ model }}</a>
+                    <a href="/?computation_model={{ model|urlencode }}" class="tag model clickable">{{ model }}</a>
                     {% endfor %}
                     {% endif %}
                 </div>
@@ -104,17 +108,44 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const activeFilters = {
-                substrate: new Set(),
-                determinism: new Set(),
-                exactness: new Set(),
-                computation_model: new Set()
-            };
-            let textQuery = '';
+            const initial = JSON.parse(document.getElementById('initial-filters').textContent);
+            const dimensions = {{ filter_dimensions | tojson }};
+            const pillDimensions = {{ pill_dimensions | tojson }};
+            const dimensionLabels = {{ dimension_labels | tojson }};
+            const multiValueDimensions = ['substrate', 'computation_model'];
+            const totalSystems = {{ systems|length }};
 
-            const dimensions = ['substrate', 'determinism', 'exactness', 'computation_model'];
+            const activeFilters = {};
+            dimensions.forEach(dim => {
+                activeFilters[dim] = new Set(initial.filters[dim] || []);
+            });
+            let textQuery = initial.q || '';
 
             const slugify = value => value.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '');
+
+            // Keep the URL in step with the pills so any filtered view can be shared
+            // or bookmarked, and so the back button lands somewhere meaningful.
+            function syncUrl() {
+                const params = new URLSearchParams();
+                dimensions.forEach(dim => {
+                    Array.from(activeFilters[dim]).sort().forEach(value => params.append(dim, value));
+                });
+                if (textQuery) params.set('q', textQuery);
+                const qs = params.toString();
+                history.replaceState(null, '', qs ? `${location.pathname}?${qs}` : location.pathname);
+            }
+
+            function toggle(dim, value) {
+                if (activeFilters[dim].has(value)) {
+                    activeFilters[dim].delete(value);
+                } else {
+                    activeFilters[dim].add(value);
+                }
+                buildFilters();
+                renderActiveFilters();
+                render();
+                syncUrl();
+            }
 
             function vocab(dim) {
                 const vals = new Set();
@@ -148,7 +179,7 @@
                             visible = false;
                             return;
                         }
-                        if (dim === 'substrate' || dim === 'computation_model') {
+                        if (multiValueDimensions.includes(dim)) {
                             const values = raw.split(',').map(v => v.trim()).filter(Boolean);
                             if (!values.some(v => filters.has(v))) visible = false;
                         } else if (!filters.has(raw)) {
@@ -169,11 +200,47 @@
                     if (visible) visibleCount++;
                 });
 
-                document.getElementById('count').textContent = `${visibleCount} / {{ systems|length }} systems`;
+                document.getElementById('count').textContent = `${visibleCount} / ${totalSystems} systems`;
+            }
+
+            // A removable chip for each active filter whose dimension has no pill
+            // row -- the pill dimensions are left out, since their own pill is
+            // already showing as active and a chip would just say it twice.
+            function renderActiveFilters() {
+                const group = document.getElementById('active-filters-group');
+                const container = document.getElementById('active-filters');
+                container.innerHTML = '';
+                const entries = [];
+                dimensions.filter(dim => !pillDimensions.includes(dim)).forEach(dim => {
+                    Array.from(activeFilters[dim]).sort().forEach(value => entries.push([dim, value]));
+                });
+                group.hidden = entries.length === 0;
+                if (!entries.length) return;
+
+                entries.forEach(([dim, value]) => {
+                    const chip = document.createElement('button');
+                    chip.type = 'button';
+                    chip.className = 'active-filter-chip';
+                    chip.title = `Remove ${dim} filter`;
+
+                    const label = document.createElement('span');
+                    label.className = 'active-filter-dim';
+                    label.textContent = `${dimensionLabels[dim] || dim}:`;
+                    const text = document.createElement('span');
+                    text.className = 'active-filter-value';
+                    text.textContent = value;
+                    const close = document.createElement('span');
+                    close.className = 'active-filter-x';
+                    close.textContent = '✕';
+
+                    chip.append(label, text, close);
+                    chip.onclick = () => toggle(dim, value);
+                    container.appendChild(chip);
+                });
             }
 
             function buildFilters() {
-                dimensions.forEach(dim => {
+                pillDimensions.forEach(dim => {
                     const container = document.getElementById(`filters-${dim}`);
                     if (!container) return;
                     const opts = vocab(dim);
@@ -200,16 +267,7 @@
                         if (activeFilters[dim].has(value)) {
                             pill.classList.add('active');
                         }
-                        pill.onclick = () => {
-                            if (activeFilters[dim].has(value)) {
-                                activeFilters[dim].delete(value);
-                                pill.classList.remove('active');
-                            } else {
-                                activeFilters[dim].add(value);
-                                pill.classList.add('active');
-                            }
-                            render();
-                        };
+                        pill.onclick = () => toggle(dim, value);
                         container.appendChild(pill);
                     });
                 });
@@ -220,15 +278,19 @@
                 document.getElementById('filter-text').value = '';
                 textQuery = '';
                 buildFilters();
+                renderActiveFilters();
                 render();
+                syncUrl();
             };
 
             document.getElementById('filter-text').oninput = e => {
                 textQuery = e.target.value;
                 render();
+                syncUrl();
             };
 
             buildFilters();
+            renderActiveFilters();
             render();
         });
     </script>

@@ -49,6 +49,11 @@ def init_database():
             energy_per_operation TEXT
         );
 
+        -- One substrate per system (see migrations/005). Enforced rather than
+        -- assumed: a second link would silently reappear in the substrate filter.
+        CREATE UNIQUE INDEX IF NOT EXISTS idx_system_substrates_single
+            ON system_substrates(system_id);
+
         DROP VIEW IF EXISTS substrate_category_summary;
         DROP VIEW IF EXISTS systems_with_realization_category;
         DROP VIEW IF EXISTS realization_category_summary;

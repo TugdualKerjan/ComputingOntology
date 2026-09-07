@@ -88,7 +88,7 @@
                 <h3>Substrates</h3>
                 <div class="category-pills">
                     {% for substrate in system.substrates %}
-                    <a href="/ontoc/substrates/{{ substrate.id }}" class="pill substrate-pill">{{ substrate.name }}</a>
+                    <a href="/?substrate={{ substrate.name|urlencode }}" class="pill substrate-pill">{{ substrate.name }}</a>
                     {% endfor %}
                 </div>
             </section>
@@ -99,7 +99,7 @@
                 <h3>Computation Models</h3>
                 <div class="category-pills">
                     {% for model in system.computation_model %}
-                    <a href="/ontoc/computation_model/{{ model }}" class="pill model-pill">{{ model }}</a>
+                    <a href="/?computation_model={{ model|urlencode }}" class="pill model-pill">{{ model }}</a>
                     {% endfor %}
                 </div>
             </section>
@@ -109,16 +109,16 @@
                 <h3>Properties</h3>
                 <div class="category-pills">
                     {% if system.determinism %}
-                    <a href="/ontoc/determinism/{{ system.determinism }}" class="pill property-pill">{{ system.determinism }}</a>
+                    <a href="/?determinism={{ system.determinism|urlencode }}" class="pill property-pill">{{ system.determinism }}</a>
                     {% endif %}
                     {% if system.reversibility %}
-                    <a href="/ontoc/reversibility/{{ system.reversibility }}" class="pill property-pill">{{ system.reversibility }}</a>
+                    <a href="/?reversibility={{ system.reversibility|urlencode }}" class="pill property-pill">{{ system.reversibility }}</a>
                     {% endif %}
                     {% if system.exactness %}
-                    <a href="/ontoc/exactness/{{ system.exactness }}" class="pill property-pill">{{ system.exactness }}</a>
+                    <a href="/?exactness={{ system.exactness|urlencode }}" class="pill property-pill">{{ system.exactness }}</a>
                     {% endif %}
                     {% if system.realization_type %}
-                    <a href="/ontoc/realization_type/{{ system.realization_type }}" class="pill property-pill">{{ system.realization_type }}</a>
+                    <a href="/?realization_type={{ system.realization_type|urlencode }}" class="pill property-pill">{{ system.realization_type }}</a>
                     {% endif %}
                 </div>
             </section>
